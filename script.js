@@ -2,7 +2,7 @@
 const items = [
     { name: 'ヘビーワーム', image: './images/ヘビーワーム.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'にゅうし', image: './images/にゅうし.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'アイテム3', image: '/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム3', image: 'NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム3', image: '/NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム3', image: './NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
