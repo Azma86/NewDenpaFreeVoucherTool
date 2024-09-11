@@ -48,19 +48,9 @@ function renderItems() {
             itemDiv.appendChild(namePara);
             itemDiv.appendChild(quantityInput);
 
-            if (item.disabled) {
+            if (item.quantity === 0 || item.disabled) {
                 const coverDiv = document.createElement('div');
-                coverDiv.classList.add('cover');
-                itemDiv.appendChild(coverDiv);
-            }
-            else if (item[index].quantity === 0) {
-				const coverDiv = document.createElement('div');
                 coverDiv.classList.add('black');
-                itemDiv.appendChild(coverDiv);
-            }
-	    else if (item[index].quantity >= 2) {
-				const coverDiv = document.createElement('div');
-                coverDiv.classList.add('green');
                 itemDiv.appendChild(coverDiv);
             }
 
