@@ -53,6 +53,16 @@ function renderItems() {
                 coverDiv.classList.add('cover');
                 itemDiv.appendChild(coverDiv);
             }
+            else if (item.quantity < 1) {
+				const coverDiv = document.createElement('div');
+                coverDiv.classList.add('black');
+                itemDiv.appendChild(coverDiv);
+            }
+			else if (item.quantity >= 2) {
+				const coverDiv = document.createElement('div');
+                coverDiv.classList.add('green');
+                itemDiv.appendChild(coverDiv);
+            }
 
             genreDiv.appendChild(itemDiv);
         });
