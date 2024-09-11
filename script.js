@@ -5,6 +5,7 @@ const items = [
     { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'おうさまのは', image: './images/おうさまのは.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'キラービースト', image: './images/キラービースト.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'ゲソパラディン', image: './images/ゲソパラディン.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'ガイアドラゴン', image: './images/ガイアドラゴン.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'フロストキーパー', image: './images/フロストキーパー.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'タケノこぞう', image: './images/タケノこぞう.png', quantity: 0, genre: '★5', disabled: false },
