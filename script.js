@@ -1,7 +1,7 @@
 // アイテムデータ (追加・差し替えが容易)
 const items = [
-    { name: 'ヘビーワーム2', image: '../images/N0030.png', quantity: 0, genre: '★4', disabled: false },
-    { name: 'アイテム2', image: './images/N0030.png', quantity: 0, genre: '防具', disabled: false },
+    { name: 'ヘビーワーム', image: './images/ヘビーワーム.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'にゅうし', image: './images/にゅうし.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'アイテム3', image: '/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム3', image: 'NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム3', image: '/NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
