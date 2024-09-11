@@ -3,7 +3,7 @@ const items = [
     { name: 'ヘビーワーム', image: './images/ヘビーワーム.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'にゅうし', image: './images/にゅうし.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'アイテム3', image: 'NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
+    { name: 'おうさまのは', image: 'NewDenpaFreeVoucherTool/images/おうさまのは.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'アイテム3', image: '/NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム3', image: './NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム3', image: 'item3.png', quantity: 0, genre: '道具', disabled: false },
@@ -53,12 +53,12 @@ function renderItems() {
                 coverDiv.classList.add('cover');
                 itemDiv.appendChild(coverDiv);
             }
-            else if (item.quantity === 0) {
+            else if (item[index].quantity === 0) {
 				const coverDiv = document.createElement('div');
                 coverDiv.classList.add('black');
                 itemDiv.appendChild(coverDiv);
             }
-	    else if (item.quantity >= 2) {
+	    else if (item[index].quantity >= 2) {
 				const coverDiv = document.createElement('div');
                 coverDiv.classList.add('green');
                 itemDiv.appendChild(coverDiv);
