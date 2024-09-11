@@ -6,23 +6,9 @@ const items = [
     { name: 'おうさまのは', image: 'NewDenpaFreeVoucherTool/images/おうさまのは.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'キラービースト', image: '/NewDenpaFreeVoucherTool/images/キラービースト.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'ガイアドラゴン', image: './NewDenpaFreeVoucherTool/images/ガイアドラゴン.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'フロストキーパー', image: './NewDenpaFreeVoucherTool/images/フロストキーパー.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'タケノこぞう', image: './NewDenpaFreeVoucherTool/images/タケノこぞう.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'エンゼルフライ', image: './NewDenpaFreeVoucherTool/images/エンゼルフライ.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'どくガエルせんし', image: './NewDenpaFreeVoucherTool/images/どくガエルせんし.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'おばけとうがらし', image: './NewDenpaFreeVoucherTool/images/おばけとうがらし.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
-    
+    { name: 'フロストキーパー', image: 'フロストキーパー.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'タケノこぞう', image: 'タケノこぞう.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'ペンギンロード', image: 'ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
 ];
 
 // アイテムを表示する
@@ -47,6 +33,7 @@ function renderItems() {
             const img = document.createElement('img');
             img.src = item.image;
             img.alt = item.name;
+            img.onerror = function() { this.src = 'noimage.png'; }; // エラー時にnoimage.pngを表示
             img.onclick = toggleCover;
 
             const quantityInput = document.createElement('input');
@@ -62,18 +49,13 @@ function renderItems() {
             itemDiv.appendChild(namePara);
             itemDiv.appendChild(quantityInput);
 
-            if (item.disabled) {
+            if (item.quantity <= 0 || item.disabled) {
                 const coverDiv = document.createElement('div');
-                coverDiv.classList.add('cover');
-                itemDiv.appendChild(coverDiv);
-            }
-            else if (item.quantity === 0) {
-				const coverDiv = document.createElement('div');
                 coverDiv.classList.add('black');
                 itemDiv.appendChild(coverDiv);
             }
-	    else if (item.quantity >= 2) {
-				const coverDiv = document.createElement('div');
+            else if (item.quantity >= 2) {
+                const coverDiv = document.createElement('div');
                 coverDiv.classList.add('green');
                 itemDiv.appendChild(coverDiv);
             }
@@ -89,6 +71,8 @@ function renderItems() {
 // 数量の更新
 function updateQuantity(index, value) {
     items[index].quantity = value;
+    saveToCookies(); // クッキーに保存
+    renderItems(); // 数量変更後に再描画
 }
 
 // 画像に×印を表示・非表示
@@ -97,13 +81,26 @@ function toggleCover(event) {
     const index = itemDiv.dataset.index; // データ属性からインデックスを取得
     items[index].disabled = !items[index].disabled; // アイテムの有効・無効を切り替え
 
-    const coverDiv = itemDiv.querySelector('.cover');
-    if (coverDiv) {
-        coverDiv.remove(); // すでにカバーがある場合は削除
+    const greenCover = itemDiv.querySelector('.green');
+    const blackCover = itemDiv.querySelector('.black');
+
+    // 緑色と黒色のカバーを適切に追加・削除
+    if (items[index].disabled) {
+        if (greenCover) {
+            greenCover.remove();
+        }
+        const coverDiv = document.createElement('div');
+        coverDiv.classList.add('black', 'cover');
+        itemDiv.appendChild(coverDiv);
     } else {
-        const newCoverDiv = document.createElement('div');
-        newCoverDiv.classList.add('cover');
-        itemDiv.appendChild(newCoverDiv); // 新しくカバーを追加
+        if (blackCover) {
+            blackCover.remove();
+        }
+        if (items[index].quantity >= 2) {
+            const coverDiv = document.createElement('div');
+            coverDiv.classList.add('green');
+            itemDiv.appendChild(coverDiv);
+        }
     }
 }
 
@@ -125,6 +122,23 @@ function saveAsImage() {
         });
 }
 
+// クッキーにデータを保存
+function saveToCookies() {
+    const itemsData = JSON.stringify(items);
+    document.cookie = `items=${encodeURIComponent(itemsData)}; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+}
+
+// クッキーからデータを読み込む
+function loadFromCookies() {
+    const cookies = document.cookie.split('; ');
+    const itemsCookie = cookies.find(row => row.startsWith('items='));
+    if (itemsCookie) {
+        const itemsData = decodeURIComponent(itemsCookie.split('=')[1]);
+        return JSON.parse(itemsData);
+    }
+    return [];
+}
+
 // DOMの変更を監視するためのMutationObserverを作成
 const observer = new MutationObserver((mutations, observer) => {
     // 監視対象のDOM要素に変更が加えられた際に実行される
@@ -141,5 +155,13 @@ const observer = new MutationObserver((mutations, observer) => {
 const config = { childList: true, subtree: true }; // DOMの子要素の変化を監視
 observer.observe(document.getElementById('item-container'), config);
 
-// ページ読み込み時にアイテムを表示
-document.addEventListener('DOMContentLoaded', renderItems);
+// ページ読み込み時にアイテムを表示し、クッキーからデータをロード
+document.addEventListener('DOMContentLoaded', () => {
+    const savedItems = loadFromCookies();
+    if (savedItems.length > 0) {
+        savedItems.forEach((item, index) => {
+            items[index] = item;
+        });
+    }
+    renderItems();
+});
