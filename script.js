@@ -6,9 +6,22 @@ const items = [
     { name: 'おうさまのは', image: 'NewDenpaFreeVoucherTool/images/おうさまのは.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'キラービースト', image: '/NewDenpaFreeVoucherTool/images/キラービースト.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'ガイアドラゴン', image: './NewDenpaFreeVoucherTool/images/ガイアドラゴン.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'フロストキーパー', image: 'フロストキーパー.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'タケノこぞう', image: 'タケノこぞう.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'ペンギンロード', image: 'ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'フロストキーパー', image: './NewDenpaFreeVoucherTool/images/フロストキーパー.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'タケノこぞう', image: './NewDenpaFreeVoucherTool/images/タケノこぞう.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'エンゼルフライ', image: './NewDenpaFreeVoucherTool/images/エンゼルフライ.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'どくガエルせんし', image: './NewDenpaFreeVoucherTool/images/どくガエルせんし.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'おばけとうがらし', image: './NewDenpaFreeVoucherTool/images/おばけとうがらし.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'きんのおくば', image: './NewDenpaFreeVoucherTool/images/きんのおくば.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'クリムゾンキーパー', image: './NewDenpaFreeVoucherTool/images/クリムゾンキーパー.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
 ];
 
 // アイテムを表示する
