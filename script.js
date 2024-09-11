@@ -3,16 +3,31 @@ const items = [
     { name: 'ヘビーワーム', image: './images/ヘビーワーム.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'にゅうし', image: './images/にゅうし.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'おうさまのは', image: 'NewDenpaFreeVoucherTool/images/おうさまのは.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'キラービースト', image: '/NewDenpaFreeVoucherTool/images/キラービースト.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'ガイアドラゴン', image: './NewDenpaFreeVoucherTool/images/ガイアドラゴン.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'フロストキーパー', image: './NewDenpaFreeVoucherTool/images/フロストキーパー.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'タケノこぞう', image: './NewDenpaFreeVoucherTool/images/タケノこぞう.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'エンゼルフライ', image: './NewDenpaFreeVoucherTool/images/エンゼルフライ.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'どくガエルせんし', image: './NewDenpaFreeVoucherTool/images/どくガエルせんし.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'おばけとうがらし', image: './NewDenpaFreeVoucherTool/images/おばけとうがらし.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'きんのおくば', image: './NewDenpaFreeVoucherTool/images/きんのおくば.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'クリムゾンキーパー', image: './NewDenpaFreeVoucherTool/images/クリムゾンキーパー.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'おうさまのは', image: './images/おうさまのは.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'キラービースト', image: './images/キラービースト.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'ガイアドラゴン', image: './images/ガイアドラゴン.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'フロストキーパー', image: './images/フロストキーパー.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'タケノこぞう', image: './images/タケノこぞう.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'エンゼルフライ', image: './images/エンゼルフライ.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'どくガエルせんし', image: './images/どくガエルせんし.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'おばけとうがらし', image: './images/おばけとうがらし.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんのおくば', image: './images/きんのおくば.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'クリムゾンキーパー', image: './images/クリムゾンキーパー.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'パラライズレイ', image: './images/パラライズレイ.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'マジックエイプ', image: './images/マジックエイプ.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'コドモドラコ', image: './images/コドモドラコ.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
 ];
 
 // アイテムを表示する
