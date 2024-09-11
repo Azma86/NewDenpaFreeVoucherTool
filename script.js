@@ -6,9 +6,9 @@ const items = [
     { name: 'おうさまのは', image: 'NewDenpaFreeVoucherTool/images/おうさまのは.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'キラービースト', image: '/NewDenpaFreeVoucherTool/images/キラービースト.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'ガイアドラゴン', image: './NewDenpaFreeVoucherTool/images/ガイアドラゴン.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'フロストキーパー', image: 'フロストキーパー.png', quantity: 0, genre: '道具', disabled: false },
-    { name: 'タケノこぞう', image: 'タケノこぞう.png', quantity: 0, genre: '武器', disabled: false },
-    { name: 'アイテム5', image: 'item5.png', quantity: 0, genre: '防具', disabled: false }
+    { name: 'フロストキーパー', image: 'フロストキーパー.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'タケノこぞう', image: 'タケノこぞう.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'ペンギンロード', image: 'ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
 ];
 
 // アイテムを表示する
