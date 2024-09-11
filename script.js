@@ -153,10 +153,11 @@ function loadFromCookies() {
     const itemsCookie = cookies.find(row => row.startsWith('items='));
     if (itemsCookie) {
         const itemsData = decodeURIComponent(itemsCookie.split('=')[1]);
-        return JSON.parse(itemsData);
+        return JSON.parse(itemsData); // クッキーに保存されていたアイテムデータを復元
     }
     return [];
 }
+
 
 // DOMの変更を監視するための MutationObserver を作成
 const observer = new MutationObserver((mutations, observer) => {
@@ -182,5 +183,5 @@ document.addEventListener('DOMContentLoaded', () => {
             items[index] = item;
         });
     }
-    renderItems();
+    renderItems(); // クッキーから読み込んだアイテム情報で再描画
 });
