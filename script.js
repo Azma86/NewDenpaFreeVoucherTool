@@ -5,7 +5,7 @@ const items = [
     { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'おうさまのは', image: 'NewDenpaFreeVoucherTool/images/おうさまのは.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'キラービースト', image: '/NewDenpaFreeVoucherTool/images/キラービースト.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'アイテム3', image: './NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
+    { name: 'ガイアドラゴン', image: './NewDenpaFreeVoucherTool/images/ガイアドラゴン.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'アイテム3', image: 'item3.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム4', image: 'item4.png', quantity: 0, genre: '武器', disabled: false },
     { name: 'アイテム5', image: 'item5.png', quantity: 0, genre: '防具', disabled: false }
@@ -48,9 +48,14 @@ function renderItems() {
             itemDiv.appendChild(namePara);
             itemDiv.appendChild(quantityInput);
 
-            if (item.quantity === 0 || item.disabled) {
+            if (item.quantity <= 0 || item.disabled) {
                 const coverDiv = document.createElement('div');
                 coverDiv.classList.add('black');
+                itemDiv.appendChild(coverDiv);
+            }
+            else if (item.quantity >= 2) {
+                const coverDiv = document.createElement('div');
+                coverDiv.classList.add('green');
                 itemDiv.appendChild(coverDiv);
             }
 
