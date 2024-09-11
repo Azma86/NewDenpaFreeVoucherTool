@@ -6,8 +6,8 @@ const items = [
     { name: 'おうさまのは', image: 'NewDenpaFreeVoucherTool/images/おうさまのは.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'キラービースト', image: '/NewDenpaFreeVoucherTool/images/キラービースト.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'ガイアドラゴン', image: './NewDenpaFreeVoucherTool/images/ガイアドラゴン.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'アイテム3', image: 'item3.png', quantity: 0, genre: '道具', disabled: false },
-    { name: 'アイテム4', image: 'item4.png', quantity: 0, genre: '武器', disabled: false },
+    { name: 'フロストキーパー', image: 'フロストキーパー.png', quantity: 0, genre: '道具', disabled: false },
+    { name: 'タケノこぞう', image: 'タケノこぞう.png', quantity: 0, genre: '武器', disabled: false },
     { name: 'アイテム5', image: 'item5.png', quantity: 0, genre: '防具', disabled: false }
 ];
 
@@ -84,7 +84,8 @@ function toggleCover(event) {
         coverDiv.remove(); // すでにカバーがある場合は削除
     } else {
         const newCoverDiv = document.createElement('div');
-        newCoverDiv.classList.add('cover');
+        newCoverDiv.classList.remove('green');
+        newCoverDiv.classList.add('cover', 'black');
         itemDiv.appendChild(newCoverDiv); // 新しくカバーを追加
     }
 }
