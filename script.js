@@ -1,6 +1,6 @@
 // アイテムデータ (追加・差し替えが容易)
 const items = [
-    { name: 'ヘビーワーム', image: 'N0030.png', quantity: 0, genre: '★5', disabled: false },
+    { name: 'ヘビーワーム', image: '/images/N0030.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'アイテム2', image: 'item2.png', quantity: 0, genre: '防具', disabled: false },
     { name: 'アイテム3', image: 'item3.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム3', image: 'item3.png', quantity: 0, genre: '道具', disabled: false },
