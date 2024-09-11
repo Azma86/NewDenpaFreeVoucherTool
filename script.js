@@ -140,3 +140,4 @@ observer.observe(document.getElementById('item-container'), config);
 
 // ページ読み込み時にアイテムを表示
 document.addEventListener('DOMContentLoaded', renderItems);
+document.addEventListener('DOMContentLoaded', renderItems);
