@@ -29,22 +29,33 @@ function renderItems() {
         genreDiv.innerHTML = `<h2>${genre}</h2>`;
         container.appendChild(genreDiv);
 
-        items.filter(item => item.genre === genre).forEach((item, index) => {
+        const filteredItems = items.filter(item => item.genre === genre);
+        let index = 0;
+
+        function renderNextItem() {
+            if (index >= filteredItems.length) return;
+
+            const item = filteredItems[index];
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('item');
-            itemDiv.dataset.index = index; // インデックスをデータ属性として保存
+            itemDiv.dataset.index = items.indexOf(item); // インデックスをデータ属性として保存
             
             const img = document.createElement('img');
             img.src = item.image;
             img.alt = item.name;
             img.onerror = function() { this.src = './images/NoImage.png'; }; // エラー時にnoimage.pngを表示
-            img.onclick = toggleCover;
+            // イベントデリゲーションで全体に一度だけクリックイベントを登録
+            document.getElementById('item-container').addEventListener('click', function(event) {
+                if (event.target.tagName === 'IMG') {
+                    toggleCover(event);
+                }
+            });
 
             const quantityInput = document.createElement('input');
             quantityInput.type = "number";
             quantityInput.value = item.quantity;
             quantityInput.min = 0;
-            quantityInput.onchange = function() { updateQuantity(index, this.value); };
+            quantityInput.onchange = function() { updateQuantity(items.indexOf(item), this.value); };
 
             const namePara = document.createElement('p');
             namePara.textContent = item.name;
@@ -65,7 +76,12 @@ function renderItems() {
             }
 
             genreDiv.appendChild(itemDiv);
-        });
+
+            index++;
+            requestAnimationFrame(renderNextItem); // 次のアイテムのレンダリングを遅延実行
+        }
+
+        requestAnimationFrame(renderNextItem);
     });
 
     // アイテムが描画された後に、画像保存ボタンのイベントを設定
