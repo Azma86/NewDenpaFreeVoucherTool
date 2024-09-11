@@ -1,11 +1,11 @@
 // アイテムデータ (追加・差し替えが容易)
 const items = [
-    { name: 'ヘビーワーム', image: '../images/N0030.png', quantity: 0, genre: '★4', disabled: false },
-    { name: 'アイテム2', image: 'item2.png', quantity: 0, genre: '防具', disabled: false },
-    { name: 'アイテム3', image: 'item3.png', quantity: 0, genre: '道具', disabled: false },
-    { name: 'アイテム3', image: 'item3.png', quantity: 0, genre: '道具', disabled: false },
-    { name: 'アイテム3', image: 'item3.png', quantity: 0, genre: '道具', disabled: false },
-    { name: 'アイテム3', image: 'item3.png', quantity: 0, genre: '道具', disabled: false },
+    { name: 'ヘビーワーム2', image: '../images/N0030.png', quantity: 0, genre: '★4', disabled: false },
+    { name: 'アイテム2', image: './images/N0030.png', quantity: 0, genre: '防具', disabled: false },
+    { name: 'アイテム3', image: '/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
+    { name: 'アイテム3', image: 'NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
+    { name: 'アイテム3', image: '/NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
+    { name: 'アイテム3', image: './NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム3', image: 'item3.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム4', image: 'item4.png', quantity: 0, genre: '武器', disabled: false },
     { name: 'アイテム5', image: 'item5.png', quantity: 0, genre: '防具', disabled: false }
