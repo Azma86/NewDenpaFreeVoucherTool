@@ -4,7 +4,7 @@ const items = [
     { name: 'にゅうし', image: './images/にゅうし.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'おうさまのは', image: 'NewDenpaFreeVoucherTool/images/おうさまのは.png', quantity: 0, genre: '★5', disabled: false },
-    { name: 'アイテム3', image: '/NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
+    { name: 'キラービースト', image: '/NewDenpaFreeVoucherTool/images/キラービースト.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'アイテム3', image: './NewDenpaFreeVoucherTool/images/N0030.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム3', image: 'item3.png', quantity: 0, genre: '道具', disabled: false },
     { name: 'アイテム4', image: 'item4.png', quantity: 0, genre: '武器', disabled: false },
@@ -65,6 +65,7 @@ function renderItems() {
 // 数量の更新
 function updateQuantity(index, value) {
     items[index].quantity = value;
+    renderItems(); // 数量変更後に再描画
 }
 
 // 画像に×印を表示・非表示
