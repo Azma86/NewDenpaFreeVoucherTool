@@ -9,8 +9,8 @@ const items = [
     { name: 'フロストキーパー', image: './NewDenpaFreeVoucherTool/images/フロストキーパー.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'タケノこぞう', image: './NewDenpaFreeVoucherTool/images/タケノこぞう.png', quantity: 0, genre: '★5', disabled: false },
     { name: 'エンゼルフライ', image: './NewDenpaFreeVoucherTool/images/エンゼルフライ.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
-    { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'どくガエルせんし', image: './NewDenpaFreeVoucherTool/images/どくガエルせんし.png', quantity: 0, genre: '★5', disabled: false }
+    { name: 'おばけとうがらし', image: './NewDenpaFreeVoucherTool/images/おばけとうがらし.png', quantity: 0, genre: '★5', disabled: false }
     { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
     { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
     { name: 'ペンギンロード', image: './NewDenpaFreeVoucherTool/images/ペンギンロード.png', quantity: 0, genre: '★5', disabled: false }
@@ -62,13 +62,18 @@ function renderItems() {
             itemDiv.appendChild(namePara);
             itemDiv.appendChild(quantityInput);
 
-            if (item.quantity <= 0 || item.disabled) {
+            if (item.disabled) {
                 const coverDiv = document.createElement('div');
+                coverDiv.classList.add('cover');
+                itemDiv.appendChild(coverDiv);
+            }
+            else if (item.quantity === 0) {
+				const coverDiv = document.createElement('div');
                 coverDiv.classList.add('black');
                 itemDiv.appendChild(coverDiv);
             }
-            else if (item.quantity >= 2) {
-                const coverDiv = document.createElement('div');
+	    else if (item.quantity >= 2) {
+				const coverDiv = document.createElement('div');
                 coverDiv.classList.add('green');
                 itemDiv.appendChild(coverDiv);
             }
@@ -84,7 +89,6 @@ function renderItems() {
 // 数量の更新
 function updateQuantity(index, value) {
     items[index].quantity = value;
-    renderItems(); // 数量変更後に再描画
 }
 
 // 画像に×印を表示・非表示
