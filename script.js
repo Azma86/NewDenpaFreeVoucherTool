@@ -30,6 +30,18 @@ const items = [
     { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: '★5', disabled: false },
 ];
 
+// ローカルストレージにデータを保存
+function saveToLocalStorage() {
+    const itemsData = JSON.stringify(items);
+    localStorage.setItem('items', itemsData);
+}
+
+// ローカルストレージからデータを読み込む
+function loadFromLocalStorage() {
+    const itemsData = localStorage.getItem('items');
+    return itemsData ? JSON.parse(itemsData) : [];
+}
+
 // アイテムを表示する
 function renderItems() {
     const container = document.getElementById('item-container');
@@ -54,7 +66,7 @@ function renderItems() {
             img.alt = item.name;
             img.onerror = function() { this.src = './images/NoImage.png'; }; // エラー時に noimage.png を表示
             img.loading = 'lazy'; // 遅延読み込み
-            // クリックイベントを設定（イベントデリゲーションを使用する場合は削除）
+            // クリックイベントを設定
             img.onclick = toggleCover;
 
             const quantityInput = document.createElement('input');
@@ -108,7 +120,7 @@ function addCover(itemDiv, item) {
 // 数量の更新
 function updateQuantity(index, value) {
     items[index].quantity = parseInt(value);
-    saveToCookies(); // クッキーに保存
+    saveToLocalStorage(); // ローカルストレージに保存
     renderItems(); // 数量変更後に再描画
 }
 
@@ -120,7 +132,7 @@ function toggleCover(event) {
 
     // カバーの再設定
     addCover(itemDiv, items[index]);
-    saveToCookies(); // 状態の変更を保存
+    saveToLocalStorage(); // 状態の変更を保存
 }
 
 // 画像として保存
@@ -141,23 +153,16 @@ function saveAsImage() {
         });
 }
 
-// クッキーにデータを保存
-function saveToCookies() {
-    const itemsData = JSON.stringify(items);
-    document.cookie = `items=${encodeURIComponent(itemsData)}; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
-}
-
-// クッキーからデータを読み込む
-function loadFromCookies() {
-    const cookies = document.cookie.split('; ');
-    const itemsCookie = cookies.find(row => row.startsWith('items='));
-    if (itemsCookie) {
-        const itemsData = decodeURIComponent(itemsCookie.split('=')[1]);
-        return JSON.parse(itemsData); // クッキーに保存されていたアイテムデータを復元
+// ページ読み込み時にアイテムを表示し、ローカルストレージからデータをロード
+document.addEventListener('DOMContentLoaded', () => {
+    const savedItems = loadFromLocalStorage();
+    if (savedItems.length > 0) {
+        savedItems.forEach((item, index) => {
+            items[index] = item;
+        });
     }
-    return [];
-}
-
+    renderItems(); // ローカルストレージから読み込んだアイテム情報で再描画
+});
 
 // DOMの変更を監視するための MutationObserver を作成
 const observer = new MutationObserver((mutations, observer) => {
