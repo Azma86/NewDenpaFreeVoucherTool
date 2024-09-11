@@ -48,11 +48,13 @@ function renderItems() {
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('item');
             itemDiv.dataset.index = index; // インデックスをデータ属性として保存
-            
+
             const img = document.createElement('img');
             img.src = item.image;
             img.alt = item.name;
-            img.onerror = function() { this.src = './images/NoImage.png'; }; // エラー時にnoimage.pngを表示
+            img.onerror = function() { this.src = './images/NoImage.png'; }; // エラー時に noimage.png を表示
+            img.loading = 'lazy'; // 遅延読み込み
+            // クリックイベントを設定（イベントデリゲーションを使用する場合は削除）
             img.onclick = toggleCover;
 
             const quantityInput = document.createElement('input');
@@ -68,16 +70,8 @@ function renderItems() {
             itemDiv.appendChild(namePara);
             itemDiv.appendChild(quantityInput);
 
-            if (item.quantity <= 0 || item.disabled) {
-                const coverDiv = document.createElement('div');
-                coverDiv.classList.add('black');
-                itemDiv.appendChild(coverDiv);
-            }
-            else if (item.quantity >= 2) {
-                const coverDiv = document.createElement('div');
-                coverDiv.classList.add('green');
-                itemDiv.appendChild(coverDiv);
-            }
+            // カバーの追加処理
+            addCover(itemDiv, item);
 
             genreDiv.appendChild(itemDiv);
         });
@@ -87,9 +81,33 @@ function renderItems() {
     document.getElementById('saveBtn').addEventListener('click', saveAsImage);
 }
 
+// カバーの追加処理
+function addCover(itemDiv, item) {
+    // 既存のカバーを削除
+    const existingCovers = itemDiv.querySelectorAll('.cover, .black, .blue, .green');
+    existingCovers.forEach(cover => cover.remove());
+
+    if (item.disabled || item.quantity == 1) {
+        // 無効化されているとき：黒カバーとクロス印を表示
+        const coverDiv = document.createElement('div');
+        coverDiv.classList.add('black', 'cover');
+        itemDiv.appendChild(coverDiv);
+    } else if (item.quantity <= 0) {
+        // 数量が0のとき：青カバーを表示
+        const coverDiv = document.createElement('div');
+        coverDiv.classList.add('blue');
+        itemDiv.appendChild(coverDiv);
+    } else if (item.quantity >= 2) {
+        // 数量が2以上のとき：緑カバーを表示
+        const coverDiv = document.createElement('div');
+        coverDiv.classList.add('green');
+        itemDiv.appendChild(coverDiv);
+    }
+}
+
 // 数量の更新
 function updateQuantity(index, value) {
-    items[index].quantity = value;
+    items[index].quantity = parseInt(value);
     saveToCookies(); // クッキーに保存
     renderItems(); // 数量変更後に再描画
 }
@@ -100,27 +118,9 @@ function toggleCover(event) {
     const index = itemDiv.dataset.index; // データ属性からインデックスを取得
     items[index].disabled = !items[index].disabled; // アイテムの有効・無効を切り替え
 
-    const greenCover = itemDiv.querySelector('.green');
-    const blackCover = itemDiv.querySelector('.black');
-
-    // 緑色と黒色のカバーを適切に追加・削除
-    if (items[index].disabled) {
-        if (greenCover) {
-            greenCover.remove();
-        }
-        const coverDiv = document.createElement('div');
-        coverDiv.classList.add('black', 'cover');
-        itemDiv.appendChild(coverDiv);
-    } else {
-        if (blackCover) {
-            blackCover.remove();
-        }
-        if (items[index].quantity >= 2) {
-            const coverDiv = document.createElement('div');
-            coverDiv.classList.add('green');
-            itemDiv.appendChild(coverDiv);
-        }
-    }
+    // カバーの再設定
+    addCover(itemDiv, items[index]);
+    saveToCookies(); // 状態の変更を保存
 }
 
 // 画像として保存
@@ -158,7 +158,7 @@ function loadFromCookies() {
     return [];
 }
 
-// DOMの変更を監視するためのMutationObserverを作成
+// DOMの変更を監視するための MutationObserver を作成
 const observer = new MutationObserver((mutations, observer) => {
     // 監視対象のDOM要素に変更が加えられた際に実行される
     const container = document.getElementById('item-container');
