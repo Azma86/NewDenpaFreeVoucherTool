@@ -46,7 +46,7 @@ function renderItems() {
             const img = document.createElement('img');
             img.src = item.image;
             img.alt = item.name;
-            img.onerror = function() { this.src = 'noimage.png'; }; // エラー時にnoimage.pngを表示
+            img.onerror = function() { this.src = './images/NoImage.png'; }; // エラー時にnoimage.pngを表示
             img.onclick = toggleCover;
 
             const quantityInput = document.createElement('input');
