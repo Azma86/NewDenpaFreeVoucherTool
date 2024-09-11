@@ -98,8 +98,7 @@ function toggleCover(event) {
         coverDiv.remove(); // すでにカバーがある場合は削除
     } else {
         const newCoverDiv = document.createElement('div');
-        newCoverDiv.classList.remove('green');
-        newCoverDiv.classList.add('cover', 'black');
+        newCoverDiv.classList.add('cover');
         itemDiv.appendChild(newCoverDiv); // 新しくカバーを追加
     }
 }
@@ -139,5 +138,4 @@ const config = { childList: true, subtree: true }; // DOMの子要素の変化�
 observer.observe(document.getElementById('item-container'), config);
 
 // ページ読み込み時にアイテムを表示
-document.addEventListener('DOMContentLoaded', renderItems);
 document.addEventListener('DOMContentLoaded', renderItems);
