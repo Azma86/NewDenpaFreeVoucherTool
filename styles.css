@@ -9,6 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+	/*background: #FFF000;*/
 }
 
 .genre {
@@ -41,6 +42,17 @@ body {
     z-index: 2;
 }
 
+/* 青色オーバーレイ（下に表示） */
+.blue {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 255, 0.3); /* 青色で透明度30% */
+    pointer-events: none; /* クリックを下の要素に通す */
+    z-index: 1; /* 青色オーバーレイを一番下に表示 */
+}
 
 /* 黒色オーバーレイ（上に表示） */
 .black {
@@ -49,7 +61,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3); /* 黒色で透明度30% */
+    background-color: rgba(0, 0, 0, 0.5); /* 黒色で透明度30% */
     pointer-events: none; /* クリックを下の要素に通す */
     z-index: 3; /* 黒色オーバーレイを最上位に表示 */
 }
@@ -66,6 +78,7 @@ body {
     z-index: 1; /* 緑色オーバーレイを一番下に表示 */
 }
 
+/* カバー（×印） */
 .cover {
     position: absolute;
     top: 0;
@@ -75,15 +88,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
-    pointer-events: none; /* これでカバーがクリックを妨げないようにする */
+    z-index: 4; /* 最上位に表示 */
+    pointer-events: none; /* クリックを妨げない */
 }
+
 
 .cover::before, .cover::after {
     content: '';
     position: absolute;
     width: 100%;
-    height: 7px; /* ここを太くする */
+    height: 5px; /* ここを太くする */
     background-color: red;
 }
 
@@ -99,6 +113,8 @@ body {
 input[type="number"] {
     width: 60px;
     text-align: center;
+	/*background:#FFFFFF;
+	z-index: 3;*/
 }
 
 button {
