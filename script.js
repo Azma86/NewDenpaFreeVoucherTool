@@ -359,6 +359,26 @@ function saveAsImage() {
 function openInNewTab() {
     const container = document.querySelector("#item-container");
 
+    // 絞り込みされた状態のコンテナをキャプチャ
+    html2canvas(container, { useCORS: true, logging: true })
+        .then(canvas => {
+            // データURLを取得
+            const dataURL = canvas.toDataURL('image/png');
+
+            // 新しいタブを開く
+            const newTab = window.open();
+            if (newTab) {
+                newTab.document.body.innerHTML = `<img src="${dataURL}" alt="Captured Image"/>`;
+            } else {
+                console.error('新しいタブを開けませんでした。ポップアップブロッカーが原因の可能性があります。');
+            }
+        })
+        .catch(error => {
+            console.error('画像の保存に失敗しました: ', error);
+        });
+}
+    const container = document.querySelector("#item-container");
+
     // html2canvas を使って #item-container をキャプチャ
     html2canvas(container, { useCORS: true, logging: true })
         .then(canvas => {
