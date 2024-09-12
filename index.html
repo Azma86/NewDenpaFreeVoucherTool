@@ -6,11 +6,18 @@
     <title>アイテム所持数チェッカー</title>
     <link rel="stylesheet" href="styles.css">
     <!-- html2canvas ライブラリの読み込み -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.1/html2canvas.min.js"></script>
 </head>
 <body>
+    <div id="genre-buttons">
+        <button data-genres="1.凄いお宝がある洞窟,2.温泉の町,3.ジュエル埋蔵地,4.風の塔と妖精,5.とうがらし農家,6.カジノの街,7.海賊と水の神殿,8.試練の塔,9.暗闇の洞窟">メイン</button>
+        <button data-genres="達人の試練,勇者の試練,冒険者の試練,駆け出し者への火の試練,駆け出し者への氷の試練,駆け出し者への風の試練,駆け出し者への土の試練,駆け出し者への雷の試練,駆け出し者への水の試練,駆け出し者への光の試練,駆け出し者への闇の試練">エクストラ</button>
+        <button data-genres="★5,★4,★3,★2,★1">レアリティ</button>
+        <!-- <button data-genres="★5">★5</button> -->
+        <!-- 他のジャンルボタンも追加できます -->
+    </div>
     <div id="item-container"></div>
-    <button id="saveBtn">画像として保存</button>
+    <button id="saveBtn" type="button">Save as Image</button>
     <script src="script.js"></script>
 </body>
 </html>
