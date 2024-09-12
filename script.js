@@ -338,38 +338,17 @@ function toggleCover(item) {
 }
 
 
-// 画像として保存（絞り込み状態を維持）
+// 画像として保存
 function saveAsImage() {
     const container = document.querySelector("#item-container");
 
-    // すべての画像が読み込まれていない場合でも、未読み込み画像にプレースホルダーを適用
-    const images = container.querySelectorAll('img');
-    images.forEach(img => {
-        if (!img.complete || img.naturalHeight === 0) {
-            img.src = './images/NoImage.png'; // 読み込みエラー時のプレースホルダー画像をセット
-        }
-    });
-
-    // プレースホルダーがセットされた状態でキャプチャを実行
-    html2canvas(container, { useCORS: true, logging: true })
+    // html2canvas を使って #item-container をキャプチャ
+    html2canvas(container, { useCORS: true })
         .then(canvas => {
+            // 画像を生成し、リンクを作成
             const link = document.createElement('a');
-            link.download = 'filtered_items.png'; // 絞り込み状態で保存
-            link.href = canvas.toDataURL('image/png');
-            link.click(); // 自動でリンクをクリックしてダウンロードを開始
-        })
-        .catch(error => {
-            console.error('画像の保存に失敗しました: ', error);
-        });
-}
-
-// キャプチャ処理を分離して実行
-function captureContainerAsImage(container) {
-    html2canvas(container, { useCORS: true, logging: true })
-        .then(canvas => {
-            const link = document.createElement('a');
-            link.download = 'filtered_items.png'; // 絞り込み状態で保存
-            link.href = canvas.toDataURL('image/png');
+            link.download = 'items.png';
+            link.href = canvas.toDataURL('image/png'); // PNG形式でキャプチャ
             link.click(); // 自動でリンクをクリックしてダウンロードを開始
         })
         .catch(error => {
