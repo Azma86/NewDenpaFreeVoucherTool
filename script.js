@@ -232,20 +232,10 @@ function saveToLocalStorage() {
     localStorage.setItem('items', itemsData);
 }
 
-// ローカルストレージからデータを読み込む（新しい要素があれば追加）
+// ローカルストレージからデータを読み込む
 function loadFromLocalStorage() {
     const itemsData = localStorage.getItem('items');
-    if (itemsData) {
-        const savedItems = JSON.parse(itemsData);
-
-        // 保存されたアイテムがある場合、オリジナルの items を更新
-        savedItems.forEach((savedItem, index) => {
-            const existingItem = items.find(item => item.name === savedItem.name);
-            if (existingItem) {
-                Object.assign(existingItem, savedItem); // データをマージ
-            }
-        });
-    }
+    return itemsData ? JSON.parse(itemsData) : [];
 }
 
 // ボタンのクリックイベントを設定
@@ -384,11 +374,23 @@ function openInNewTab() {
 // ページ読み込み時にアイテムを表示し、ローカルストレージからデータをロード
 document.addEventListener('DOMContentLoaded', () => {
     const savedItems = loadFromLocalStorage();
+
     if (savedItems.length > 0) {
-        savedItems.forEach((item, index) => {
-            items[index] = item;
+        savedItems.forEach((savedItem, index) => {
+            // アイテムが既存のデータと一致するかチェック
+            const matchingItem = items.find(item => item.name === savedItem.name);
+
+            if (matchingItem) {
+                // 一致する場合は、ローカルストレージのデータで上書き
+                matchingItem.quantity = savedItem.quantity;
+                matchingItem.disabled = savedItem.disabled;
+            } else {
+                // 一致するアイテムがない場合は新しいアイテムとして追加
+                items.push(savedItem);
+            }
         });
     }
+	
     setupGenreButtons(); // ボタンのイベントリスナーを設定
 
     // デフォルトで1つ目のボタンを選択
