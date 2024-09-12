@@ -337,23 +337,23 @@ function toggleCover(item) {
 }
 
 
-// 画像として保存
+// 画像として保存（絞り込み状態を維持）
 function saveAsImage() {
     const container = document.querySelector("#item-container");
 
-    // html2canvas を使って #item-container をキャプチャ
-    html2canvas(container, { useCORS: true })
+    // 絞り込みされた状態のコンテナをキャプチャ
+    html2canvas(container, { useCORS: true, logging: true })
         .then(canvas => {
-            // 画像を生成し、リンクを作成
             const link = document.createElement('a');
-            link.download = 'items.png';
-            link.href = canvas.toDataURL('image/png'); // PNG形式でキャプチャ
+            link.download = 'filtered_items.png'; // 絞り込み状態で保存
+            link.href = canvas.toDataURL('image/png');
             link.click(); // 自動でリンクをクリックしてダウンロードを開始
         })
         .catch(error => {
             console.error('画像の保存に失敗しました: ', error);
         });
 }
+
 
 // ページ読み込み時にアイテムを表示し、ローカルストレージからデータをロード
 document.addEventListener('DOMContentLoaded', () => {
@@ -371,3 +371,4 @@ document.addEventListener('DOMContentLoaded', () => {
         firstButton.click(); // 最初のボタンをクリックして自動選択
     }
 });
+
