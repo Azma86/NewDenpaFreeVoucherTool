@@ -3,7 +3,7 @@ let selectedGenres = [];
 
 // アイテムデータ (追加・差し替えが容易)
 const items = [
-    { name: 'ジェリーマウス', image: './images/ジェリーマウス.png', quantity: 0, genre: ['★1', '1.凄いお宝がある洞窟'], disabled: false },
+/*    { name: 'ジェリーマウス', image: './images/ジェリーマウス.png', quantity: 0, genre: ['★1', '1.凄いお宝がある洞窟'], disabled: false },
 	{ name: 'きゅうけつキャット', image: './images/きゅうけつキャット.png', quantity: 0, genre: ['★2', '1.凄いお宝がある洞窟'], disabled: false },
 	{ name: 'だんごボーイ', image: './images/だんごボーイ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
 	{ name: 'ボムパイン', image: './images/ボムパイン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
@@ -222,7 +222,9 @@ const items = [
     { name: 'かみなりタイガー', image: './images/かみなりタイガー.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
     { name: 'ホースドラゴン', image: './images/ホースドラゴン.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
     { name: 'ペンギンロード', image: './images/ペンギンロード.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
-    { name: 'あんこくりゅう', image: './images/あんこくりゅう.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
+    { name: 'あんこくりゅう', image: './images/あんこくりゅう.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },*/
+
+	{ name: 'ペンギンロード', image: './images/ペンギンロード.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
 	
 ];
 
