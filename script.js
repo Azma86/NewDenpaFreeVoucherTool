@@ -4,14 +4,14 @@ let selectedGenres = [];
 // アイテムデータ (追加・差し替えが容易)
 const items = [
     { name: 'ジェリーマウス', image: './images/ジェリーマウス.png', quantity: 0, genre: ['★1', '1.凄いお宝がある洞窟'], disabled: false },
-	{ name: 'きゅうけつキャット', image: './images/きゅうけつキャット.png', quantity: 0, genre: ['★2', '1.凄いお宝がある洞窟'], disabled: false },
-	{ name: 'だんごボーイ', image: './images/だんごボーイ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-	{ name: 'ボムパイン', image: './images/ボムパイン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-	{ name: 'ロックゲーター', image: './images/ロックゲーター.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-	{ name: 'ぶたばなウサギ', image: './images/ぶたばなウサギ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-	{ name: 'トードロック', image: './images/トードロック.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-	{ name: 'はさみサボテン', image: './images/はさみサボテン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-	{ name: 'ヴァイパーレディ', image: './images/ヴァイパーレディ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+    { name: 'きゅうけつキャット', image: './images/きゅうけつキャット.png', quantity: 0, genre: ['★2', '1.凄いお宝がある洞窟'], disabled: false },
+    { name: 'だんごボーイ', image: './images/だんごボーイ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+    { name: 'ボムパイン', image: './images/ボムパイン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+    { name: 'ロックゲーター', image: './images/ロックゲーター.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+    { name: 'ぶたばなウサギ', image: './images/ぶたばなウサギ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+    { name: 'トードロック', image: './images/トードロック.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+    { name: 'はさみサボテン', image: './images/はさみサボテン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+    { name: 'ヴァイパーレディ', image: './images/ヴァイパーレディ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
 	
     { name: 'あかばなチョウ', image: './images/あかばなチョウ.png', quantity: 0, genre: ['★1', '2.温泉の町'], disabled: false },
     { name: 'おおくちばし', image: './images/おおくちばし.png', quantity: 0, genre: ['★1', '2.温泉の町'], disabled: false },
