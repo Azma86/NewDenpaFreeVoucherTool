@@ -274,7 +274,7 @@ function renderItems(selectedGenres = []) {
             img.alt = item.name;
             img.onerror = function() { this.src = './images/NoImage.png'; }; // エラー時に noimage.png を表示
             img.loading = 'lazy'; // 遅延読み込み
-            img.onclick = () => toggleCover(item); // アイテム自体を渡す
+            img.onclick = () => toggleCover(item, itemDiv); // アイテムとアイテム要素を渡す
 
             const quantityInput = document.createElement('input');
             quantityInput.type = "number";
@@ -295,7 +295,6 @@ function renderItems(selectedGenres = []) {
             genreDiv.appendChild(itemDiv);
         });
     });
-	
 }
 
 // カバーの追加処理
@@ -330,11 +329,13 @@ function updateQuantity(item, value) {
 }
 
 // 画像に×印を表示・非表示
-function toggleCover(item) {
+function toggleCover(item, itemDiv) {
     item.disabled = !item.disabled; // アイテムの有効・無効を切り替え
 
     saveToLocalStorage(); // 状態の変更を保存
-    renderItems(selectedGenres); // 変更を反映（選択されたジャンルを維持）
+
+    // カバーの状態だけを更新
+    addCover(itemDiv, item);
 }
 
 
