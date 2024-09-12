@@ -232,10 +232,20 @@ function saveToLocalStorage() {
     localStorage.setItem('items', itemsData);
 }
 
-// ローカルストレージからデータを読み込む
+// ローカルストレージからデータを読み込む（新しい要素があれば追加）
 function loadFromLocalStorage() {
     const itemsData = localStorage.getItem('items');
-    return itemsData ? JSON.parse(itemsData) : [];
+    if (itemsData) {
+        const savedItems = JSON.parse(itemsData);
+
+        // 保存されたアイテムがある場合、オリジナルの items を更新
+        savedItems.forEach((savedItem, index) => {
+            const existingItem = items.find(item => item.name === savedItem.name);
+            if (existingItem) {
+                Object.assign(existingItem, savedItem); // データをマージ
+            }
+        });
+    }
 }
 
 // ボタンのクリックイベントを設定
