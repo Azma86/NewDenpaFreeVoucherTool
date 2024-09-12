@@ -249,6 +249,9 @@ function setupGenreButtons() {
     });
 }
 
+// アイテムが描画される前に、画像保存ボタンのイベントを設定
+    document.getElementById('saveBtn').addEventListener('click', saveAsImage);
+
 // アイテムを表示する
 function renderItems(selectedGenres = []) {
     const container = document.getElementById('item-container');
@@ -292,9 +295,7 @@ function renderItems(selectedGenres = []) {
             genreDiv.appendChild(itemDiv);
         });
     });
-
-    // アイテムが描画された後に、画像保存ボタンのイベントを設定
-    document.getElementById('saveBtn').addEventListener('click', saveAsImage);
+	
 }
 
 // カバーの追加処理
