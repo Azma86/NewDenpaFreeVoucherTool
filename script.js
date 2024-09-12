@@ -4,14 +4,14 @@ let selectedGenres = [];
 // アイテムデータ (追加・差し替えが容易)
 const items = [
     { name: 'ジェリーマウス', image: './images/ジェリーマウス.png', quantity: 0, genre: ['★1', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'きゅうけつキャット', image: './images/きゅうけつキャット.png', quantity: 0, genre: ['★2', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'だんごボーイ', image: './images/だんごボーイ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'ボムパイン', image: './images/ボムパイン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'ロックゲーター', image: './images/ロックゲーター.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'ぶたばなウサギ', image: './images/ぶたばなウサギ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'トードロック', image: './images/トードロック.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'はさみサボテン', image: './images/はさみサボテン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'ヴァイパーレディ', image: './images/ヴァイパーレディ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'きゅうけつキャット', image: './images/きゅうけつキャット.png', quantity: 0, genre: ['★2', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'だんごボーイ', image: './images/だんごボーイ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'ボムパイン', image: './images/ボムパイン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'ロックゲーター', image: './images/ロックゲーター.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'ぶたばなウサギ', image: './images/ぶたばなウサギ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'トードロック', image: './images/トードロック.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'はさみサボテン', image: './images/はさみサボテン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'ヴァイパーレディ', image: './images/ヴァイパーレディ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
 	
     { name: 'あかばなチョウ', image: './images/あかばなチョウ.png', quantity: 0, genre: ['★1', '2.温泉の町'], disabled: false },
     { name: 'おおくちばし', image: './images/おおくちばし.png', quantity: 0, genre: ['★1', '2.温泉の町'], disabled: false },
@@ -341,7 +341,31 @@ function toggleCover(item) {
 function saveAsImage() {
     const container = document.querySelector("#item-container");
 
-    // 絞り込みされた状態のコンテナをキャプチャ
+    // まず、すべての画像が読み込まれたか確認する
+    const images = container.querySelectorAll('img');
+    let imagesLoaded = 0;
+
+    images.forEach(img => {
+        if (img.complete && img.naturalHeight !== 0) {
+            imagesLoaded++;
+        } else {
+            img.onload = () => {
+                imagesLoaded++;
+                if (imagesLoaded === images.length) {
+                    captureContainerAsImage(container); // 全ての画像が読み込まれたらキャプチャ開始
+                }
+            };
+        }
+    });
+
+    // すでにすべての画像が読み込まれている場合、キャプチャを開始
+    if (imagesLoaded === images.length) {
+        captureContainerAsImage(container);
+    }
+}
+
+// キャプチャ処理を分離して実行
+function captureContainerAsImage(container) {
     html2canvas(container, { useCORS: true, logging: true })
         .then(canvas => {
             const link = document.createElement('a');
@@ -353,7 +377,6 @@ function saveAsImage() {
             console.error('画像の保存に失敗しました: ', error);
         });
 }
-
 
 // ページ読み込み時にアイテムを表示し、ローカルストレージからデータをロード
 document.addEventListener('DOMContentLoaded', () => {
@@ -371,4 +394,3 @@ document.addEventListener('DOMContentLoaded', () => {
         firstButton.click(); // 最初のボタンをクリックして自動選択
     }
 });
-
