@@ -338,26 +338,36 @@ function toggleCover(item) {
 }
 
 
-// 画像として保存（絞り込み状態を維持）
+// 画像として保存
 function saveAsImage() {
     const container = document.querySelector("#item-container");
 
-    // 絞り込みされた状態のコンテナをキャプチャ
+    // html2canvas を使って #item-container をキャプチャ
     html2canvas(container, { useCORS: true, logging: true })
         .then(canvas => {
-            // データURLを取得
-            const dataURL = canvas.toDataURL('image/png');
-
-            // 新しいタブを開く
-            const newTab = window.open();
-            if (newTab) {
-                newTab.document.body.innerHTML = `<img src="${dataURL}" alt="Captured Image"/>`;
-            } else {
-                console.error('新しいタブを開けませんでした。ポップアップブロッカーが原因の可能性があります。');
-            }
+            const link = document.createElement('a');
+            link.download = 'filtered_items.png'; // 絞り込み状態で保存
+            link.href = canvas.toDataURL('image/png');
+            link.click(); // 自動でリンクをクリックしてダウンロードを開始
         })
         .catch(error => {
             console.error('画像の保存に失敗しました: ', error);
+        });
+}
+
+// 新しいタブで開く
+function openInNewTab() {
+    const container = document.querySelector("#item-container");
+
+    // html2canvas を使って #item-container をキャプチャ
+    html2canvas(container, { useCORS: true, logging: true })
+        .then(canvas => {
+            const imageUrl = canvas.toDataURL('image/png');
+            const newTab = window.open();
+            newTab.document.body.innerHTML = `<img src="${imageUrl}" alt="Captured Image">`;
+        })
+        .catch(error => {
+            console.error('新しいタブでの画像表示に失敗しました: ', error);
         });
 }
 
