@@ -338,18 +338,23 @@ function toggleCover(item) {
 }
 
 
-// 画像として保存
+// 画像として保存（絞り込み状態を維持）
 function saveAsImage() {
     const container = document.querySelector("#item-container");
 
-    // html2canvas を使って #item-container をキャプチャ
-    html2canvas(container, { useCORS: true })
+    // 絞り込みされた状態のコンテナをキャプチャ
+    html2canvas(container, { useCORS: true, logging: true })
         .then(canvas => {
-            // 画像を生成し、リンクを作成
-            const link = document.createElement('a');
-            link.download = 'items.png';
-            link.href = canvas.toDataURL('image/png'); // PNG形式でキャプチャ
-            link.click(); // 自動でリンクをクリックしてダウンロードを開始
+            // データURLを取得
+            const dataURL = canvas.toDataURL('image/png');
+
+            // 新しいタブを開く
+            const newTab = window.open();
+            if (newTab) {
+                newTab.document.body.innerHTML = `<img src="${dataURL}" alt="Captured Image"/>`;
+            } else {
+                console.error('新しいタブを開けませんでした。ポップアップブロッカーが原因の可能性があります。');
+            }
         })
         .catch(error => {
             console.error('画像の保存に失敗しました: ', error);
