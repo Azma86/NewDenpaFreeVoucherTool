@@ -3,7 +3,7 @@ let selectedGenres = [];
 
 // アイテムデータ (追加・差し替えが容易)
 const items = [
-/*    { name: 'ジェリーマウス', image: './images/ジェリーマウス.png', quantity: 0, genre: ['★1', '1.凄いお宝がある洞窟'], disabled: false },
+    { name: 'ジェリーマウス', image: './images/ジェリーマウス.png', quantity: 0, genre: ['★1', '1.凄いお宝がある洞窟'], disabled: false },
 	{ name: 'きゅうけつキャット', image: './images/きゅうけつキャット.png', quantity: 0, genre: ['★2', '1.凄いお宝がある洞窟'], disabled: false },
 	{ name: 'だんごボーイ', image: './images/だんごボーイ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
 	{ name: 'ボムパイン', image: './images/ボムパイン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
@@ -222,9 +222,7 @@ const items = [
     { name: 'かみなりタイガー', image: './images/かみなりタイガー.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
     { name: 'ホースドラゴン', image: './images/ホースドラゴン.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
     { name: 'ペンギンロード', image: './images/ペンギンロード.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
-    { name: 'あんこくりゅう', image: './images/あんこくりゅう.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },*/
-
-	{ name: 'ペンギンロード', image: './images/ペンギンロード.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
+    { name: 'あんこくりゅう', image: './images/あんこくりゅう.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
 	
 ];
 
@@ -343,27 +341,25 @@ function toggleCover(item) {
 function saveAsImage() {
     const container = document.querySelector("#item-container");
 
-    // まず、すべての画像が読み込まれたか確認する
+    // すべての画像が読み込まれていない場合でも、未読み込み画像にプレースホルダーを適用
     const images = container.querySelectorAll('img');
-    let imagesLoaded = 0;
-
     images.forEach(img => {
-        if (img.complete && img.naturalHeight !== 0) {
-            imagesLoaded++;
-        } else {
-            img.onload = () => {
-                imagesLoaded++;
-                if (imagesLoaded === images.length) {
-                    captureContainerAsImage(container); // 全ての画像が読み込まれたらキャプチャ開始
-                }
-            };
+        if (!img.complete || img.naturalHeight === 0) {
+            img.src = './images/NoImage.png'; // 読み込みエラー時のプレースホルダー画像をセット
         }
     });
 
-    // すでにすべての画像が読み込まれている場合、キャプチャを開始
-    if (imagesLoaded === images.length) {
-        captureContainerAsImage(container);
-    }
+    // プレースホルダーがセットされた状態でキャプチャを実行
+    html2canvas(container, { useCORS: true, logging: true })
+        .then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'filtered_items.png'; // 絞り込み状態で保存
+            link.href = canvas.toDataURL('image/png');
+            link.click(); // 自動でリンクをクリックしてダウンロードを開始
+        })
+        .catch(error => {
+            console.error('画像の保存に失敗しました: ', error);
+        });
 }
 
 // キャプチャ処理を分離して実行
