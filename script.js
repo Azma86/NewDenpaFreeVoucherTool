@@ -4,90 +4,90 @@ let selectedGenres = [];
 // アイテムデータ (追加・差し替えが容易)
 const items = [
     { name: 'ジェリーマウス', image: './images/ジェリーマウス.png', quantity: 0, genre: ['★1', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'きゅうけつキャット', image: './images/きゅうけつキャット.png', quantity: 0, genre: ['★2', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'だんごボーイ', image: './images/だんごボーイ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟', '夏休みあかしコレクション'], disabled: false },
-    { name: 'ボムパイン', image: './images/ボムパイン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟', '夏休みあかしコレクション'], disabled: false },
-    { name: 'ロックゲーター', image: './images/ロックゲーター.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'ぶたばなウサギ', image: './images/ぶたばなウサギ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'トードロック', image: './images/トードロック.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'はさみサボテン', image: './images/はさみサボテン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'ヴァイパーレディ', image: './images/ヴァイパーレディ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'きゅうけつキャット', image: './images/きゅうけつキャット.png', quantity: 0, genre: ['★2', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'だんごボーイ', image: './images/だんごボーイ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'ボムパイン', image: './images/ボムパイン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'ロックゲーター', image: './images/ロックゲーター.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'ぶたばなウサギ', image: './images/ぶたばなウサギ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'トードロック', image: './images/トードロック.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'はさみサボテン', image: './images/はさみサボテン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+	{ name: 'ヴァイパーレディ', image: './images/ヴァイパーレディ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
 	
     { name: 'あかばなチョウ', image: './images/あかばなチョウ.png', quantity: 0, genre: ['★1', '2.温泉の町'], disabled: false },
     { name: 'おおくちばし', image: './images/おおくちばし.png', quantity: 0, genre: ['★1', '2.温泉の町'], disabled: false },
-    { name: 'ウッキー', image: './images/ウッキー.png', quantity: 0, genre: ['★1', '2.温泉の町', '夏休みあかしコレクション'], disabled: false },
-    { name: 'バーサーカー', image: './images/バーサーカー.png', quantity: 0, genre: ['★3', '2.温泉の町', '夏休みあかしコレクション'], disabled: false },
-    { name: 'ひつかいキツネ', image: './images/ひつかいキツネ.png', quantity: 0, genre: ['★4', '2.温泉の町', 'メインレア4コレクション(1)'], disabled: false },
+    { name: 'ウッキー', image: './images/ウッキー.png', quantity: 0, genre: ['★1', '2.温泉の町'], disabled: false },
+    { name: 'バーサーカー', image: './images/バーサーカー.png', quantity: 0, genre: ['★3', '2.温泉の町'], disabled: false },
+    { name: 'ひつかいキツネ', image: './images/ひつかいキツネ.png', quantity: 0, genre: ['★4', '2.温泉の町'], disabled: false },
     { name: 'サラマンダー', image: './images/サラマンダー.png', quantity: 0, genre: ['★2', '2.温泉の町'], disabled: false },
     { name: 'トーチゴースト', image: './images/トーチゴースト.png', quantity: 0, genre: ['★3', '2.温泉の町'], disabled: false },
     { name: 'ポーン', image: './images/ポーン.png', quantity: 0, genre: ['★3', '2.温泉の町'], disabled: false },
 	
     { name: 'ずきんぶたばな', image: './images/ずきんぶたばな.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地'], disabled: false },
     { name: 'アイスシープ', image: './images/アイスシープ.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地'], disabled: false },
-    { name: 'ラッシュボウ', image: './images/ラッシュボウ.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地', '夏休みあかしコレクション'], disabled: false },
-    { name: 'どくろマイマイ', image: './images/どくろマイマイ.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地', '夏休みあかしコレクション'], disabled: false },
+    { name: 'ラッシュボウ', image: './images/ラッシュボウ.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地'], disabled: false },
+    { name: 'どくろマイマイ', image: './images/どくろマイマイ.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地'], disabled: false },
     { name: 'がんせきまじん', image: './images/がんせきまじん.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地'], disabled: false },
-    { name: 'アイスクラブ', image: './images/アイスクラブ.png', quantity: 0, genre: ['★4', '3.ジュエル埋蔵地', 'メインレア4コレクション(1)'], disabled: false },
-    { name: 'フローズンミスト', image: './images/フローズンミスト.png', quantity: 0, genre: ['★4', '3.ジュエル埋蔵地', 'メインレア4コレクション(1)'], disabled: false },
-    { name: 'ジュエルまじん', image: './images/ジュエルまじん.png', quantity: 0, genre: ['★5', '3.ジュエル埋蔵地', 'メインレア5コレクション'], disabled: false },
+    { name: 'アイスクラブ', image: './images/アイスクラブ.png', quantity: 0, genre: ['★4', '3.ジュエル埋蔵地'], disabled: false },
+    { name: 'フローズンミスト', image: './images/フローズンミスト.png', quantity: 0, genre: ['★4', '3.ジュエル埋蔵地'], disabled: false },
+    { name: 'ジュエルまじん', image: './images/ジュエルまじん.png', quantity: 0, genre: ['★5', '3.ジュエル埋蔵地'], disabled: false },
 	
     { name: 'リーフホッグ', image: './images/リーフホッグ.png', quantity: 0, genre: ['★3', '4.風の塔と妖精'], disabled: false },
     { name: 'ダイころがし', image: './images/ダイころがし.png', quantity: 0, genre: ['★2', '4.風の塔と妖精'], disabled: false },
-    { name: 'マジックエイプ', image: './images/マジックエイプ.png', quantity: 0, genre: ['★5', '4.風の塔と妖精', 'メインレア5コレクション'], disabled: false },
-    { name: 'ウィンドデビル', image: './images/ウィンドデビル.png', quantity: 0, genre: ['★3', '4.風の塔と妖精', '夏休みあかしコレクション'], disabled: false },
-    { name: 'ヘビーワーム', image: './images/ヘビーワーム.png', quantity: 0, genre: ['★5', '4.風の塔と妖精', 'メインレア5コレクション'], disabled: false },
-    { name: 'しびれマタンゴ', image: './images/しびれマタンゴ.png', quantity: 0, genre: ['★4', '4.風の塔と妖精', 'メインレア4コレクション(1)'], disabled: false },
+	{ name: 'マジックエイプ', image: './images/マジックエイプ.png', quantity: 0, genre: ['★5', '4.風の塔と妖精'], disabled: false },
+    { name: 'ウィンドデビル', image: './images/ウィンドデビル.png', quantity: 0, genre: ['★3', '4.風の塔と妖精'], disabled: false },
+    { name: 'ヘビーワーム', image: './images/ヘビーワーム.png', quantity: 0, genre: ['★5', '4.風の塔と妖精'], disabled: false },
+    { name: 'しびれマタンゴ', image: './images/しびれマタンゴ.png', quantity: 0, genre: ['★4', '4.風の塔と妖精'], disabled: false },
     { name: 'ウィンドビー', image: './images/ウィンドビー.png', quantity: 0, genre: ['★2', '4.風の塔と妖精'], disabled: false },
-    { name: 'コドモドラコ', image: './images/コドモドラコ.png', quantity: 0, genre: ['★5', '4.風の塔と妖精'], 'メインレア5コレクション', disabled: false },
+	{ name: 'コドモドラコ', image: './images/コドモドラコ.png', quantity: 0, genre: ['★5', '4.風の塔と妖精'], disabled: false },
 	
-    { name: 'はなもぐら', image: './images/はなもぐら.png', quantity: 0, genre: ['★1', '5.とうがらし農家'], disabled: false },
-    { name: 'もろこしおばけ', image: './images/もろこしおばけ.png', quantity: 0, genre: ['★4', '5.とうがらし農家', 'メインレア4コレクション(1)'], disabled: false },
-    { name: 'タケノこぞう', image: './images/タケノこぞう.png', quantity: 0, genre: ['★5', '5.とうがらし農家'], 'メインレア5コレクション', disabled: false },
-    { name: 'おばけとうがらし', image: './images/おばけとうがらし.png', quantity: 0, genre: ['★5', '5.とうがらし農家', 'メインレア5コレクション'], disabled: false },
-    { name: 'ドライウッド', image: './images/ドライウッド.png', quantity: 0, genre: ['★4', '5.とうがらし農家'], disabled: false },
-    { name: 'ロックシープ', image: './images/ロックシープ.png', quantity: 0, genre: ['★3', '5.とうがらし農家'], disabled: false },
-    { name: 'ギガントード', image: './images/ギガントード.png', quantity: 0, genre: ['★3', '5.とうがらし農家'], disabled: false },
-    { name: 'ヒドラプラント', image: './images/ヒドラプラント.png', quantity: 0, genre: ['★4', '5.とうがらし農家', 'メインレア4コレクション(1)'], disabled: false },
-    { name: 'ゴーレム', image: './images/ゴーレム.png', quantity: 0, genre: ['★4', '5.とうがらし農家', 'メインレア4コレクション(1)'], disabled: false },
+	{ name: 'はなもぐら', image: './images/はなもぐら.png', quantity: 0, genre: ['★1', '5.とうがらし農家'], disabled: false },
+	{ name: 'もろこしおばけ', image: './images/もろこしおばけ.png', quantity: 0, genre: ['★4', '5.とうがらし農家'], disabled: false },
+	{ name: 'タケノこぞう', image: './images/タケノこぞう.png', quantity: 0, genre: ['★5', '5.とうがらし農家'], disabled: false },
+	{ name: 'おばけとうがらし', image: './images/おばけとうがらし.png', quantity: 0, genre: ['★5', '5.とうがらし農家'], disabled: false },
+	{ name: 'ドライウッド', image: './images/ドライウッド.png', quantity: 0, genre: ['★4', '5.とうがらし農家'], disabled: false },
+	{ name: 'ロックシープ', image: './images/ロックシープ.png', quantity: 0, genre: ['★3', '5.とうがらし農家'], disabled: false },
+	{ name: 'ギガントード', image: './images/ギガントード.png', quantity: 0, genre: ['★3', '5.とうがらし農家'], disabled: false },
+	{ name: 'ヒドラプラント', image: './images/ヒドラプラント.png', quantity: 0, genre: ['★4', '5.とうがらし農家'], disabled: false },
+	{ name: 'ゴーレム', image: './images/ゴーレム.png', quantity: 0, genre: ['★4', '5.とうがらし農家'], disabled: false },
 	
-    { name: 'かみなりちょう', image: './images/かみなりちょう.png', quantity: 0, genre: ['★1', '6.カジノの街'], disabled: false },
-    { name: 'カビまんじゅう', image: './images/カビまんじゅう.png', quantity: 0, genre: ['★1', '6.カジノの街'], disabled: false },
-    { name: 'ばけギツネ', image: './images/ばけギツネ.png', quantity: 0, genre: ['★2', '6.カジノの街'], disabled: false },
-    { name: 'ライジーン', image: './images/ライジーン.png', quantity: 0, genre: ['★4', '6.カジノの街', 'メインレア4コレクション(1)'], disabled: false },
-    { name: 'ダークドラゴン', image: './images/ダークドラゴン.png', quantity: 0, genre: ['★5', '6.カジノの街', 'メインレア5コレクション'], disabled: false },
-    { name: 'パラライズレイ', image: './images/パラライズレイ.png', quantity: 0, genre: ['★5', '6.カジノの街', 'メインレア5コレクション'], disabled: false },
-    { name: 'サンダービースト', image: './images/サンダービースト.png', quantity: 0, genre: ['★3', '6.カジノの街'], disabled: false },
-    { name: 'にゅうし', image: './images/にゅうし.png', quantity: 0, genre: ['★5', '6.カジノの街', '経験値ゲット', 'メインレア5コレクション'], disabled: false },
+	{ name: 'かみなりちょう', image: './images/かみなりちょう.png', quantity: 0, genre: ['★1', '6.カジノの街'], disabled: false },
+	{ name: 'カビまんじゅう', image: './images/カビまんじゅう.png', quantity: 0, genre: ['★1', '6.カジノの街'], disabled: false },
+	{ name: 'ばけギツネ', image: './images/ばけギツネ.png', quantity: 0, genre: ['★2', '6.カジノの街'], disabled: false },
+	{ name: 'ライジーン', image: './images/ライジーン.png', quantity: 0, genre: ['★4', '6.カジノの街'], disabled: false },
+	{ name: 'ダークドラゴン', image: './images/ダークドラゴン.png', quantity: 0, genre: ['★5', '6.カジノの街'], disabled: false },
+	{ name: 'パラライズレイ', image: './images/パラライズレイ.png', quantity: 0, genre: ['★5', '6.カジノの街'], disabled: false },
+	{ name: 'サンダービースト', image: './images/サンダービースト.png', quantity: 0, genre: ['★3', '6.カジノの街'], disabled: false },
+    { name: 'にゅうし', image: './images/にゅうし.png', quantity: 0, genre: ['★5', '6.カジノの街'], disabled: false },
 	
-    { name: 'おばけオトシゴ', image: './images/おばけオトシゴ.png', quantity: 0, genre: ['★4', '7.海賊と水の神殿', 'メインレア4コレクション(2)'], disabled: false },
+    { name: 'おばけオトシゴ', image: './images/おばけオトシゴ.png', quantity: 0, genre: ['★4', '7.海賊と水の神殿'], disabled: false },
     { name: 'あおばなちょう', image: './images/あおばなちょう.png', quantity: 0, genre: ['★3', '7.海賊と水の神殿'], disabled: false },
     { name: 'おおナマコ', image: './images/おおナマコ.png', quantity: 0, genre: ['★3', '7.海賊と水の神殿'], disabled: false },
     { name: 'かいぞくキャット', image: './images/かいぞくキャット.png', quantity: 0, genre: ['★3', '7.海賊と水の神殿'], disabled: false },
-    { name: 'かいぞくウッキー', image: './images/かいぞくウッキー.png', quantity: 0, genre: ['★4', '7.海賊と水の神殿', 'メインレア4コレクション(2)'], disabled: false },
+    { name: 'かいぞくウッキー', image: './images/かいぞくウッキー.png', quantity: 0, genre: ['★4', '7.海賊と水の神殿'], disabled: false },
     { name: 'よつめシャーク', image: './images/よつめシャーク.png', quantity: 0, genre: ['★3', '7.海賊と水の神殿'], disabled: false },
-    { name: 'ハンマーアンコウ', image: './images/ハンマーアンコウ.png', quantity: 0, genre: ['★4', '7.海賊と水の神殿', 'メインレア4コレクション(2)'], disabled: false },
+    { name: 'ハンマーアンコウ', image: './images/ハンマーアンコウ.png', quantity: 0, genre: ['★4', '7.海賊と水の神殿'], disabled: false },
     { name: 'りくガニ', image: './images/りくガニ.png', quantity: 0, genre: ['★3', '7.海賊と水の神殿'], disabled: false },
     { name: 'あばれコブダイ', image: './images/あばれコブダイ.png', quantity: 0, genre: ['★3', '7.海賊と水の神殿'], disabled: false },
-    { name: 'かいりゅう', image: './images/かいりゅう.png', quantity: 0, genre: ['★5', '7.海賊と水の神殿', 'メインレア5コレクション'], disabled: false },
+    { name: 'かいりゅう', image: './images/かいりゅう.png', quantity: 0, genre: ['★5', '7.海賊と水の神殿'], disabled: false },
 	
     { name: 'シールドナイト', image: './images/シールドナイト.png', quantity: 0, genre: ['★3', '8.試練の塔'], disabled: false },
     { name: 'ビショップ', image: './images/ビショップ.png', quantity: 0, genre: ['★3', '8.試練の塔'], disabled: false },
     { name: 'プラチナドラゴン', image: './images/プラチナドラゴン.png', quantity: 0, genre: ['★3', '8.試練の塔'], disabled: false },
     { name: 'ルーク', image: './images/ルーク.png', quantity: 0, genre: ['★3', '8.試練の塔'], disabled: false },
     { name: 'クイーン', image: './images/クイーン.png', quantity: 0, genre: ['★3', '8.試練の塔'], disabled: false },
-    { name: 'ねずみみけんし', image: './images/ねずみみけんし.png', quantity: 0, genre: ['★4', '8.試練の塔', 'メインレア4コレクション(2)'], disabled: false },
-    { name: 'エンゼルフライ', image: './images/エンゼルフライ.png', quantity: 0, genre: ['★5', '8.試練の塔', 'メインレア5コレクション'], disabled: false },
-    { name: 'キラービースト', image: './images/キラービースト.png', quantity: 0, genre: ['★5', '8.試練の塔', 'メインレア5コレクション'], disabled: false },
-    { name: 'キング', image: './images/キング.png', quantity: 0, genre: ['★4', '8.試練の塔', 'メインレア4コレクション(2)'], disabled: false },
+    { name: 'ねずみみけんし', image: './images/ねずみみけんし.png', quantity: 0, genre: ['★4', '8.試練の塔'], disabled: false },
+    { name: 'エンゼルフライ', image: './images/エンゼルフライ.png', quantity: 0, genre: ['★5', '8.試練の塔'], disabled: false },
+    { name: 'キラービースト', image: './images/キラービースト.png', quantity: 0, genre: ['★5', '8.試練の塔'], disabled: false },
+    { name: 'キング', image: './images/キング.png', quantity: 0, genre: ['★4', '8.試練の塔'], disabled: false },
 	
     { name: 'ブラッドバット', image: './images/ブラッドバット.png', quantity: 0, genre: ['★1', '9.暗闇の洞窟'], disabled: false },
     { name: 'ダークゴブリン', image: './images/ダークゴブリン.png', quantity: 0, genre: ['★1', '9.暗闇の洞窟'], disabled: false },
     { name: 'ゴースト', image: './images/ゴースト.png', quantity: 0, genre: ['★3', '9.暗闇の洞窟'], disabled: false },
-    { name: 'たからばこぞう', image: './images/たからばこぞう.png', quantity: 0, genre: ['★4', '9.暗闇の洞窟', 'メインレア4コレクション(2)'], disabled: false },
-    { name: 'ファフニール', image: './images/ファフニール.png', quantity: 0, genre: ['★4', '9.暗闇の洞窟', 'メインレア4コレクション(2)'], disabled: false },
+    { name: 'たからばこぞう', image: './images/たからばこぞう.png', quantity: 0, genre: ['★4', '9.暗闇の洞窟'], disabled: false },
+    { name: 'ファフニール', image: './images/ファフニール.png', quantity: 0, genre: ['★4', '9.暗闇の洞窟'], disabled: false },
     { name: 'ブラックバード', image: './images/ブラックバード.png', quantity: 0, genre: ['★3', '9.暗闇の洞窟'], disabled: false },
-    { name: 'ビースト', image: './images/ビースト.png', quantity: 0, genre: ['★4', '9.暗闇の洞窟', 'メインレア4コレクション(2)'], disabled: false },
-    { name: 'デーモン', image: './images/デーモン.png', quantity: 0, genre: ['★4', '9.暗闇の洞窟', 'メインレア4コレクション(2)'], disabled: false },
+    { name: 'ビースト', image: './images/ビースト.png', quantity: 0, genre: ['★4', '9.暗闇の洞窟'], disabled: false },
+    { name: 'デーモン', image: './images/デーモン.png', quantity: 0, genre: ['★4', '9.暗闇の洞窟'], disabled: false },
 	
     { name: 'かえんマイマイ', image: './images/かえんマイマイ.png', quantity: 0, genre: ['★1', '駆け出し者への火の試練'], disabled: false },
     { name: 'かえんニードル', image: './images/かえんニードル.png', quantity: 0, genre: ['★4', '駆け出し者への火の試練'], disabled: false },
@@ -141,18 +141,18 @@ const items = [
     { name: 'アースドラコ', image: './images/アースドラコ.png', quantity: 0, genre: ['★4', '駆け出し者への土の試練'], disabled: false },
     { name: 'どくガエルせんし', image: './images/どくガエルせんし.png', quantity: 0, genre: ['★5', '駆け出し者への土の試練'], disabled: false },
 	
-    { name: 'サンダードラゴン', image: './images/サンダードラゴン.png', quantity: 0, genre: ['★5', '駆け出し者への雷の試練'], disabled: false },
-    { name: 'サンダーボウ', image: './images/サンダーボウ.png', quantity: 0, genre: ['★4', '駆け出し者への雷の試練'], disabled: false },
+	{ name: 'サンダードラゴン', image: './images/サンダードラゴン.png', quantity: 0, genre: ['★5', '駆け出し者への雷の試練'], disabled: false },
+	{ name: 'サンダーボウ', image: './images/サンダーボウ.png', quantity: 0, genre: ['★4', '駆け出し者への雷の試練'], disabled: false },
     { name: 'サンダーエイプ', image: './images/サンダーエイプ.png', quantity: 0, genre: ['★4', '駆け出し者への雷の試練'], disabled: false },
-    { name: 'サンダービー', image: './images/サンダービー.png', quantity: 0, genre: ['★4', '駆け出し者への雷の試練'], disabled: false },
+	{ name: 'サンダービー', image: './images/サンダービー.png', quantity: 0, genre: ['★4', '駆け出し者への雷の試練'], disabled: false },
     { name: 'サンダーシープ', image: './images/サンダーシープ.png', quantity: 0, genre: ['★3', '駆け出し者への雷の試練'], disabled: false },
     { name: 'サンダーミスト', image: './images/サンダーミスト.png', quantity: 0, genre: ['★5', '駆け出し者への雷の試練'], disabled: false },
-    { name: 'かみなりゴケ', image: './images/かみなりゴケ.png', quantity: 0, genre: ['★1', '駆け出し者への雷の試練'], disabled: false },
+	{ name: 'かみなりゴケ', image: './images/かみなりゴケ.png', quantity: 0, genre: ['★1', '駆け出し者への雷の試練'], disabled: false },
     { name: 'あらくれきょじん', image: './images/あらくれきょじん.png', quantity: 0, genre: ['★4', '駆け出し者への雷の試練'], disabled: false },
     { name: 'イエローアイズプテラ', image: './images/イエローアイズプテラ.png', quantity: 0, genre: ['★4', '駆け出し者への雷の試練'], disabled: false },
-    { name: 'エレキドラコ', image: './images/エレキドラコ.png', quantity: 0, genre: ['★2', '駆け出し者への雷の試練'], disabled: false },
-    { name: 'ビリビリクラゲ', image: './images/ビリビリクラゲ.png', quantity: 0, genre: ['★3', '駆け出し者への雷の試練'], disabled: false },
-    { name: 'しびれジェリー', image: './images/しびれジェリー.png', quantity: 0, genre: ['★3', '駆け出し者への雷の試練'], disabled: false },
+	{ name: 'エレキドラコ', image: './images/エレキドラコ.png', quantity: 0, genre: ['★2', '駆け出し者への雷の試練'], disabled: false },
+	{ name: 'ビリビリクラゲ', image: './images/ビリビリクラゲ.png', quantity: 0, genre: ['★3', '駆け出し者への雷の試練'], disabled: false },
+	{ name: 'しびれジェリー', image: './images/しびれジェリー.png', quantity: 0, genre: ['★3', '駆け出し者への雷の試練'], disabled: false },
 	
     { name: 'バブルフロッグ', image: './images/バブルフロッグ.png', quantity: 0, genre: ['★1', '駆け出し者への水の試練'], disabled: false },
     { name: 'アクアボウ', image: './images/アクアボウ.png', quantity: 0, genre: ['★3', '駆け出し者への水の試練'], disabled: false },
@@ -223,64 +223,6 @@ const items = [
     { name: 'ホースドラゴン', image: './images/ホースドラゴン.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
     { name: 'ペンギンロード', image: './images/ペンギンロード.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
     { name: 'あんこくりゅう', image: './images/あんこくりゅう.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
-
-    { name: 'はなざかりもぐら', image: './images/はなざかりもぐら.png', quantity: 0, genre: ['★4', 'ブーストゲット!'], disabled: false },
-    { name: 'ネズミはなもぐら', image: './images/ネズミはなもぐら.png', quantity: 0, genre: ['★4', 'ブーストゲット!'], disabled: false },
-    { name: 'きんピカはなもぐら', image: './images/きんピカはなもぐら.png', quantity: 0, genre: ['★4', 'ブーストゲット!'], disabled: false },
-    { name: 'モフはなざかりもぐら', image: './images/はなざかりもぐら.png', quantity: 0, genre: ['★3', 'ブーストゲット!'], disabled: false },
-    { name: 'モフネズミはなもぐら', image: './images/ネズミはなもぐら.png', quantity: 0, genre: ['★3', 'ブーストゲット!'], disabled: false },
-    { name: 'モフきんピカはなもぐら', image: './images/きんピカはなもぐら.png', quantity: 0, genre: ['★3', 'ブーストゲット!'], disabled: false },
-    { name: 'モフはなもぐら', image: './images/モフはなもぐら.png', quantity: 0, genre: ['★3', 'ブーストゲット!'], disabled: false },
-    { name: 'こうてつまじん', image: './images/こうてつまじん.png', quantity: 0, genre: ['★4', 'ブーストゲット!'], disabled: false },
-    { name: 'とげとげボーイ', image: './images/とげとげボーイ.png', quantity: 0, genre: ['★4', 'ブーストゲット!'], disabled: false },
-	
-    { name: 'ブルホーン', image: './images/ブルホーン.png', quantity: 0, genre: ['★3', 'ごちそうゲット!'], disabled: false },
-    { name: 'ポイズンさそり', image: './images/ポイズンさそり.png', quantity: 0, genre: ['★3', 'ごちそうゲット!'], disabled: false },
-    { name: 'ウィンドミスト', image: './images/ウィンドミスト.png', quantity: 0, genre: ['★3', 'ごちそうゲット!'], disabled: false },
-    { name: 'デスイーグル', image: './images/デスイーグル.png', quantity: 0, genre: ['★3', 'ごちそうゲット!'], disabled: false },
-    { name: 'ファイアウッキー', image: './images/ファイアウッキー.png', quantity: 0, genre: ['★3', 'ごちそうゲット!'], disabled: false },
-    { name: 'いちごおばけ', image: './images/いちごおばけ.png', quantity: 0, genre: ['★3', 'ごちそうゲット!'], disabled: false },
-    { name: 'プチトマトおばけ', image: './images/プチトマトおばけ.png', quantity: 0, genre: ['★3', 'ごちそうゲット!'], disabled: false },
-    { name: 'イビルスパイス', image: './images/イビルスパイス.png', quantity: 0, genre: ['★3', 'ごちそうゲット!'], disabled: false },
-    { name: 'フローズンパイン', image: './images/フローズンパイン.png', quantity: 0, genre: ['★3', 'ごちそうゲット!'], disabled: false },
-	
-    { name: 'えいきゅうし', image: './images/えいきゅうし.png', quantity: 0, genre: ['★3', '経験値ゲット!'], disabled: false },
-    { name: 'けんし', image: './images/けんし.png', quantity: 0, genre: ['★3', '経験値ゲット!'], disabled: false },
-    { name: 'おくば', image: './images/おくば.png', quantity: 0, genre: ['★3', '経験値ゲット!'], disabled: false },
-    { name: 'むしば', image: './images/むしば.png', quantity: 0, genre: ['★3', '経験値ゲット!'], disabled: false },
-    { name: 'じょおうのは', image: './images/じょおうのは.png', quantity: 0, genre: ['★3', '経験値ゲット!'], disabled: false },
-    { name: 'ネズぶたウサギ', image: './images/ネズぶたウサギ.png', quantity: 0, genre: ['★4', '経験値ゲット!'], disabled: false },
-    { name: 'ぶたばなきょうせんし', image: './images/ぶたばなきょうせんし.png', quantity: 0, genre: ['★4', '経験値ゲット!'], disabled: false },
-    { name: 'びっくりボックス', image: './images/びっくりボックス.png', quantity: 0, genre: ['★4', '経験値ゲット!'], disabled: false },
-	
-    { name: 'がいこつゆうれい', image: './images/がいこつゆうれい.png', quantity: 0, genre: ['★4', 'コインゲット!'], disabled: false },
-    { name: 'ぎぞくキャット', image: './images/ぎぞくキャット.png', quantity: 0, genre: ['★4', 'コインゲット!'], disabled: false },
-    { name: 'ナイトアイ', image: './images/ナイトアイ.png', quantity: 0, genre: ['★4', 'コインゲット!'], disabled: false },
-    { name: 'さるゾンビ', image: './images/さるゾンビ.png', quantity: 0, genre: ['★4', 'コインゲット!'], disabled: false },
-    { name: 'いかたいしょう', image: './images/いかたいしょう.png', quantity: 0, genre: ['★4', 'コインゲット!'], disabled: false },
-    { name: 'トレジャーメイジ', image: './images/トレジャーメイジ.png', quantity: 0, genre: ['★4', 'コインゲット!'], disabled: false },
-    { name: 'ブルージャイアント', image: './images/ブルージャイアント.png', quantity: 0, genre: ['★4', 'コインゲット!'], disabled: false },
-    { name: 'ゴルゴンシャーク', image: './images/ゴルゴンシャーク.png', quantity: 0, genre: ['★4', 'コインゲット!'], disabled: false },
-    { name: 'シールドヴァイキング', image: './images/シールドヴァイキング.png', quantity: 0, genre: ['★4', 'コインゲット!'], disabled: false },
-    { name: 'ねずみみロード', image: './images/ねずみみロード.png', quantity: 0, genre: ['★4', 'コインゲット!'], disabled: false },
-	
-    { name: 'きんば', image: './images/きんば.png', quantity: 0, genre: ['★4', 'ゴールドゲット!'], disabled: false },
-    { name: 'きんのおくば', image: './images/きんのおくば.png', quantity: 0, genre: ['★4', 'ゴールドゲット!'], disabled: false },
-    { name: 'プラチナのは', image: './images/プラチナのは.png', quantity: 0, genre: ['★4', 'ゴールドゲット!'], disabled: false },
-    { name: 'おうさまのは', image: './images/おうさまのは.png', quantity: 0, genre: ['★4', 'ゴールドゲット!'], disabled: false },
-    { name: 'ゴールデンハム', image: './images/ゴールデンハム.png', quantity: 0, genre: ['★4', 'ゴールドゲット!'], disabled: false },
-    { name: 'キャットシーフ', image: './images/キャットシーフ.png', quantity: 0, genre: ['★4', 'ゴールドゲット!'], disabled: false },
-    { name: 'ようがんゴースト', image: './images/ようがんゴースト.png', quantity: 0, genre: ['★4', 'ゴールドゲット!'], disabled: false },
-    { name: 'ビックリッチ', image: './images/ビックリッチ.png', quantity: 0, genre: ['★4', 'ゴールドゲット!'], disabled: false },
-	
-    { name: 'ジュエルのは', image: './images/ジュエルのは.png', quantity: 0, genre: ['★3', 'ジュエルゲット!'], disabled: false },
-    { name: 'ジュエルロース', image: './images/ジュエルロース.png', quantity: 0, genre: ['★3', 'ジュエルゲット!'], disabled: false },
-    { name: 'ジュエルこぞう', image: './images/ジュエルこぞう.png', quantity: 0, genre: ['★3', 'ジュエルゲット!'], disabled: false },
-    { name: 'クリスタルマイマイ', image: './images/クリスタルマイマイ.png', quantity: 0, genre: ['★3', 'ジュエルゲット!'], disabled: false },
-    { name: 'こんぺきナイト', image: './images/こんぺきナイト.png', quantity: 0, genre: ['★3', 'ジュエルゲット!'], disabled: false },
-    { name: 'ジュエルキング', image: './images/ジュエルキング.png', quantity: 0, genre: ['★3', 'ジュエルゲット!'], disabled: false },
-	
-    { name: 'あなほりホッグ', image: './images/あなほりホッグ.png', quantity: 0, genre: ['★3', '9月.森の「きのこ」は誰のもの?'], disabled: false },
 	
 ];
 
@@ -332,7 +274,7 @@ function renderItems(selectedGenres = []) {
             img.alt = item.name;
             img.onerror = function() { this.src = './images/NoImage.png'; }; // エラー時に noimage.png を表示
             img.loading = 'lazy'; // 遅延読み込み
-            img.onclick = () => toggleCover(item, itemDiv); // アイテムとアイテム要素を渡す
+            img.onclick = () => toggleCover(item); // アイテム自体を渡す
 
             const quantityInput = document.createElement('input');
             quantityInput.type = "number";
@@ -353,6 +295,7 @@ function renderItems(selectedGenres = []) {
             genreDiv.appendChild(itemDiv);
         });
     });
+	
 }
 
 // カバーの追加処理
@@ -387,13 +330,11 @@ function updateQuantity(item, value) {
 }
 
 // 画像に×印を表示・非表示
-function toggleCover(item, itemDiv) {
+function toggleCover(item) {
     item.disabled = !item.disabled; // アイテムの有効・無効を切り替え
 
     saveToLocalStorage(); // 状態の変更を保存
-
-    // カバーの状態だけを更新
-    addCover(itemDiv, item);
+    renderItems(selectedGenres); // 変更を反映（選択されたジャンルを維持）
 }
 
 
