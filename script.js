@@ -324,10 +324,20 @@ function addCover(itemDiv, item) {
 
 // 数量の更新
 function updateQuantity(item, value) {
+    const itemDiv = document.querySelector(`[data-id="${item.id}"]`);
+    const quantityInput = itemDiv.querySelector('input[type="number"]');
+    
+    // 数量の更新
     item.quantity = parseInt(value);
-    saveToLocalStorage(); // ローカルストレージに保存
-    renderItems(selectedGenres); // 数量変更後に再描画（選択されたジャンルを維持）
+    quantityInput.value = item.quantity; // DOMの数量も更新
+    
+    // カバーの状態だけを更新
+    addCover(itemDiv, item);
+    
+    // ローカルストレージに保存
+    saveToLocalStorage();
 }
+
 
 // 画像に×印を表示・非表示
 function toggleCover(item) {
