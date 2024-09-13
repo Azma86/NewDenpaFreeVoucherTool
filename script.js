@@ -1,9 +1,6 @@
 // グローバル変数で選択されたジャンルを保持
 let selectedGenres = [];
 
-//前回の状態を保存するための変数を追加
-let previousItemsState = [];
-
 // アイテムデータ (追加・差し替えが容易)
 const items = [
     { name: 'ジェリーマウス', image: './images/ジェリーマウス.png', quantity: 0, genre: ['★1', '1.凄いお宝がある洞窟'], disabled: false },
@@ -226,31 +223,26 @@ const items = [
     { name: 'ホースドラゴン', image: './images/ホースドラゴン.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
     { name: 'ペンギンロード', image: './images/ペンギンロード.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
     { name: 'あんこくりゅう', image: './images/あんこくりゅう.png', quantity: 0, genre: ['★5', '達人の試練'], disabled: false },
-
- //   { name: 'あなほりホッグ', image: './images/あなほりホッグ.png', quantity: 0, genre: ['★3', '9月.森の「きのこ」は誰のもの?'], disabled: false },
 	
 ];
 
 // ローカルストレージにデータを保存
 function saveToLocalStorage() {
-    const itemsData = items.map(item => ({
-        name: item.name,
-        quantity: item.quantity,
-        disabled: item.disabled,
-    }));
-    localStorage.setItem('items', JSON.stringify(itemsData));
+    const itemsData = JSON.stringify(items);
+    localStorage.setItem('items', itemsData);
 }
 
-// ローカルストレージからデータを読み込む
+// ローカルストレージからデータを読み込む（新しい要素があれば追加）
 function loadFromLocalStorage() {
     const itemsData = localStorage.getItem('items');
     if (itemsData) {
-        const parsedItems = JSON.parse(itemsData);
-        parsedItems.forEach(savedItem => {
-            const matchingItem = items.find(item => item.name === savedItem.name);
-            if (matchingItem) {
-                matchingItem.quantity = savedItem.quantity;
-                matchingItem.disabled = savedItem.disabled;
+        const savedItems = JSON.parse(itemsData);
+
+        // 保存されたアイテムがある場合、オリジナルの items を更新
+        savedItems.forEach((savedItem, index) => {
+            const existingItem = items.find(item => item.name === savedItem.name);
+            if (existingItem) {
+                Object.assign(existingItem, savedItem); // データをマージ
             }
         });
     }
@@ -270,60 +262,35 @@ function setupGenreButtons() {
 // アイテムが描画される前に、画像保存ボタンのイベントを設定
     document.getElementById('saveBtn').addEventListener('click', saveAsImage);
 
+// アイテムを表示する
 function renderItems(selectedGenres = []) {
     const container = document.getElementById('item-container');
-
-    // 初回描画では前回の状態がないため、すべてをクリアして再描画
-    if (previousItemsState.length === 0) {
-        container.innerHTML = ''; // 一度リセット
-    }
+    container.innerHTML = ''; // 一度リセット
 
     // HTMLで指定されたジャンル順に表示するために、selectedGenresの順に処理
     selectedGenres.forEach(genre => {
-        let genreDiv = container.querySelector(`div[data-genre="${genre}"]`);
-
-        // ジャンルの新規作成時のみ追加
-        if (!genreDiv) {
-            genreDiv = document.createElement('div');
-            genreDiv.classList.add('genre');
-            genreDiv.setAttribute('data-genre', genre);
-            genreDiv.innerHTML = `<h2>${genre}</h2>`;
-            container.appendChild(genreDiv);
-        }
+        const genreDiv = document.createElement('div');
+        genreDiv.classList.add('genre');
+        genreDiv.innerHTML = `<h2>${genre}</h2>`;
+        container.appendChild(genreDiv);
 
         // 選択されたジャンルに合致するアイテムを表示
         items.filter(item => item.genre.includes(genre)).forEach(item => {
-            const previousItemState = previousItemsState.find(stateItem => stateItem.name === item.name);
-            
-            // 状態が変更されていないアイテムは再描画しない
-            if (previousItemState && previousItemState.quantity === item.quantity && previousItemState.disabled === item.disabled) {
-                return;
-            }
-
-            let itemDiv = genreDiv.querySelector(`div[data-item-name="${item.name}"]`);
-
-            // アイテムの新規作成時のみ追加
-            if (!itemDiv) {
-                itemDiv = document.createElement('div');
-                itemDiv.classList.add('item');
-                itemDiv.setAttribute('data-item-name', item.name);
-                genreDiv.appendChild(itemDiv);
-            }
-
-            itemDiv.innerHTML = ''; // 既存の内容をクリアして再描画
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('item');
 
             const img = document.createElement('img');
             img.src = item.image;
             img.alt = item.name;
-            img.onerror = function() { this.src = './images/NoImage.png'; };
-            img.loading = 'lazy';
-            img.onclick = () => toggleCover(item);
+            img.onerror = function() { this.src = './images/NoImage.png'; }; // エラー時に noimage.png を表示
+            img.loading = 'lazy'; // 遅延読み込み
+            img.onclick = () => toggleCover(item); // アイテム自体を渡す
 
             const quantityInput = document.createElement('input');
             quantityInput.type = "number";
             quantityInput.value = item.quantity;
             quantityInput.min = 0;
-            quantityInput.onchange = function() { updateQuantity(item, this.value); };
+            quantityInput.onchange = function() { updateQuantity(item, this.value); }; // アイテム自体を渡す
 
             const namePara = document.createElement('p');
             namePara.textContent = item.name;
@@ -334,11 +301,11 @@ function renderItems(selectedGenres = []) {
 
             // カバーの追加処理
             addCover(itemDiv, item);
+
+            genreDiv.appendChild(itemDiv);
         });
     });
-
-    // 現在の状態を保存
-    previousItemsState = JSON.parse(JSON.stringify(items));
+	
 }
 
 // カバーの追加処理
@@ -373,13 +340,11 @@ function updateQuantity(item, value) {
 }
 
 // 画像に×印を表示・非表示
-function toggleCover(item, itemDiv) {
+function toggleCover(item) {
     item.disabled = !item.disabled; // アイテムの有効・無効を切り替え
 
     saveToLocalStorage(); // 状態の変更を保存
-
-    // カバーの状態だけを更新
-    addCover(itemDiv, item);
+    renderItems(selectedGenres); // 変更を反映（選択されたジャンルを維持）
 }
 
 
@@ -419,34 +384,11 @@ function openInNewTab() {
 // ページ読み込み時にアイテムを表示し、ローカルストレージからデータをロード
 document.addEventListener('DOMContentLoaded', () => {
     const savedItems = loadFromLocalStorage();
-
     if (savedItems.length > 0) {
-        savedItems.forEach((savedItem, index) => {
-            // アイテムが既存のデータと一致するかチェック
-            const matchingItem = items.find(item => item.name === savedItem.name);
-
-            if (matchingItem) {
-                // 一致する場合は、ローカルストレージのデータで上書き
-                matchingItem.quantity = savedItem.quantity;
-                matchingItem.disabled = savedItem.disabled;
-            } else {
-                // 一致するアイテムがない場合は新しいアイテムとして追加
-                items.push(savedItem);
-            }
+        savedItems.forEach((item, index) => {
+            items[index] = item;
         });
     }
-
-// ページ読み込み時にアイテムを表示し、ローカルストレージからデータをロード
-document.addEventListener('DOMContentLoaded', () => {
-    loadFromLocalStorage();
-    setupGenreButtons(); 
-
-    const firstButton = document.querySelector('#genre-buttons button');
-    if (firstButton) {
-        firstButton.click(); 
-    }
-});
-	
     setupGenreButtons(); // ボタンのイベントリスナーを設定
 
     // デフォルトで1つ目のボタンを選択
