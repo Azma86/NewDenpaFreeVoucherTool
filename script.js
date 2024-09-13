@@ -252,50 +252,66 @@ function setupGenreButtons() {
 // アイテムが描画される前に、画像保存ボタンのイベントを設定
     document.getElementById('saveBtn').addEventListener('click', saveAsImage);
 
-// アイテムを表示する
+// アイテムを表示する（変更が必要な部分のみ更新）
 function renderItems(selectedGenres = []) {
     const container = document.getElementById('item-container');
-    container.innerHTML = ''; // 一度リセット
 
-    // HTMLで指定されたジャンル順に表示するために、selectedGenresの順に処理
+    // 保持するアイテムのリスト
+    const currentItems = Array.from(container.querySelectorAll('.item'));
+
+    // 更新対象のジャンルでアイテムを処理
     selectedGenres.forEach(genre => {
-        const genreDiv = document.createElement('div');
-        genreDiv.classList.add('genre');
-        genreDiv.innerHTML = `<h2>${genre}</h2>`;
-        container.appendChild(genreDiv);
+        let genreDiv = container.querySelector(`.genre[data-genre="${genre}"]`);
+        if (!genreDiv) {
+            genreDiv = document.createElement('div');
+            genreDiv.classList.add('genre');
+            genreDiv.setAttribute('data-genre', genre);
+            genreDiv.innerHTML = `<h2>${genre}</h2>`;
+            container.appendChild(genreDiv);
+        }
 
         // 選択されたジャンルに合致するアイテムを表示
         items.filter(item => item.genre.includes(genre)).forEach(item => {
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('item');
+            let itemDiv = genreDiv.querySelector(`.item[data-id="${item.id}"]`);
 
-            const img = document.createElement('img');
-            img.src = item.image;
-            img.alt = item.name;
-            img.onerror = function() { this.src = './images/NoImage.png'; }; // エラー時に noimage.png を表示
-            img.loading = 'lazy'; // 遅延読み込み
-            img.onclick = () => toggleCover(item); // アイテム自体を渡す
+            // 既存のアイテムがなければ新規作成
+            if (!itemDiv) {
+                itemDiv = document.createElement('div');
+                itemDiv.classList.add('item');
+                itemDiv.setAttribute('data-id', item.id);
 
-            const quantityInput = document.createElement('input');
-            quantityInput.type = "number";
-            quantityInput.value = item.quantity;
-            quantityInput.min = 0;
-            quantityInput.onchange = function() { updateQuantity(item, this.value); }; // アイテム自体を渡す
+                const img = document.createElement('img');
+                img.src = item.image;
+                img.alt = item.name;
+                img.onerror = function() { this.src = './images/NoImage.png'; }; // エラー時に noimage.png を表示
+                img.loading = 'lazy';
+                img.onclick = () => toggleCover(item);
 
-            const namePara = document.createElement('p');
-            namePara.textContent = item.name;
+                const quantityInput = document.createElement('input');
+                quantityInput.type = "number";
+                quantityInput.value = item.quantity;
+                quantityInput.min = 0;
+                quantityInput.onchange = function() { updateQuantity(item, this.value); };
 
-            itemDiv.appendChild(img);
-            itemDiv.appendChild(namePara);
-            itemDiv.appendChild(quantityInput);
+                const namePara = document.createElement('p');
+                namePara.textContent = item.name;
 
-            // カバーの追加処理
+                itemDiv.appendChild(img);
+                itemDiv.appendChild(namePara);
+                itemDiv.appendChild(quantityInput);
+                genreDiv.appendChild(itemDiv);
+            }
+
+            // カバーの追加処理（既存のDOM要素に対してのみ）
             addCover(itemDiv, item);
 
-            genreDiv.appendChild(itemDiv);
+            // アイテムの情報が変更されている場合のみ更新
+            const quantityInput = itemDiv.querySelector('input[type="number"]');
+            if (quantityInput.value != item.quantity) {
+                quantityInput.value = item.quantity;
+            }
         });
     });
-	
 }
 
 // カバーの追加処理
@@ -324,19 +340,10 @@ function addCover(itemDiv, item) {
 
 // 数量の更新
 function updateQuantity(item, value) {
-    window.requestAnimationFrame(() => {
-		
-        item.quantity = parseInt(value);
-        const itemDiv = document.querySelector(`[data-id="${item.id}"]`);
-        itemDiv.querySelector('input[type="number"]').value = item.quantity;
-		
-		// カバーの状態だけを更新
-        addCover(itemDiv, item);
-		
-		// ローカルストレージに保存
-        saveToLocalStorage();
-    });
-
+    item.quantity = parseInt(value);
+    saveToLocalStorage(); // ローカルストレージに保存
+    renderItems(selectedGenres); // 数量変更後に再描画（選択されたジャンルを維持）
+}
 
 // 画像に×印を表示・非表示
 function toggleCover(item) {
@@ -383,11 +390,23 @@ function openInNewTab() {
 // ページ読み込み時にアイテムを表示し、ローカルストレージからデータをロード
 document.addEventListener('DOMContentLoaded', () => {
     const savedItems = loadFromLocalStorage();
+
     if (savedItems.length > 0) {
-        savedItems.forEach((item, index) => {
-            items[index] = item;
+        savedItems.forEach((savedItem, index) => {
+            // アイテムが既存のデータと一致するかチェック
+            const matchingItem = items.find(item => item.name === savedItem.name);
+
+            if (matchingItem) {
+                // 一致する場合は、ローカルストレージのデータで上書き
+                matchingItem.quantity = savedItem.quantity;
+                matchingItem.disabled = savedItem.disabled;
+            } else {
+                // 一致するアイテムがない場合は新しいアイテムとして追加
+                items.push(savedItem);
+            }
         });
     }
+	
     setupGenreButtons(); // ボタンのイベントリスナーを設定
 
     // デフォルトで1つ目のボタンを選択
