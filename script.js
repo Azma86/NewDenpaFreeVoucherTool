@@ -5,8 +5,8 @@ let selectedGenres = [];
 const items = [
     { name: 'ジェリーマウス', image: './images/ジェリーマウス.png', quantity: 0, genre: ['★1', '1.凄いお宝がある洞窟'], disabled: false },
     { name: 'きゅうけつキャット', image: './images/きゅうけつキャット.png', quantity: 0, genre: ['★2', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'だんごボーイ', image: './images/だんごボーイ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
-    { name: 'ボムパイン', image: './images/ボムパイン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
+    { name: 'だんごボーイ', image: './images/だんごボーイ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟', '夏休みあかしコレクション'], disabled: false },
+    { name: 'ボムパイン', image: './images/ボムパイン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟', '夏休みあかしコレクション'], disabled: false },
     { name: 'ロックゲーター', image: './images/ロックゲーター.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
     { name: 'ぶたばなウサギ', image: './images/ぶたばなウサギ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
     { name: 'トードロック', image: './images/トードロック.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟'], disabled: false },
@@ -15,8 +15,8 @@ const items = [
 	
     { name: 'あかばなチョウ', image: './images/あかばなチョウ.png', quantity: 0, genre: ['★1', '2.温泉の町'], disabled: false },
     { name: 'おおくちばし', image: './images/おおくちばし.png', quantity: 0, genre: ['★1', '2.温泉の町'], disabled: false },
-    { name: 'ウッキー', image: './images/ウッキー.png', quantity: 0, genre: ['★1', '2.温泉の町'], disabled: false },
-    { name: 'バーサーカー', image: './images/バーサーカー.png', quantity: 0, genre: ['★3', '2.温泉の町'], disabled: false },
+    { name: 'ウッキー', image: './images/ウッキー.png', quantity: 0, genre: ['★1', '2.温泉の町', '夏休みあかしコレクション'], disabled: false },
+    { name: 'バーサーカー', image: './images/バーサーカー.png', quantity: 0, genre: ['★3', '2.温泉の町', '夏休みあかしコレクション'], disabled: false },
     { name: 'ひつかいキツネ', image: './images/ひつかいキツネ.png', quantity: 0, genre: ['★4', '2.温泉の町', 'メインレア4コレクション(1)'], disabled: false },
     { name: 'サラマンダー', image: './images/サラマンダー.png', quantity: 0, genre: ['★2', '2.温泉の町'], disabled: false },
     { name: 'トーチゴースト', image: './images/トーチゴースト.png', quantity: 0, genre: ['★3', '2.温泉の町'], disabled: false },
@@ -24,8 +24,8 @@ const items = [
 	
     { name: 'ずきんぶたばな', image: './images/ずきんぶたばな.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地'], disabled: false },
     { name: 'アイスシープ', image: './images/アイスシープ.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地'], disabled: false },
-    { name: 'ラッシュボウ', image: './images/ラッシュボウ.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地'], disabled: false },
-    { name: 'どくろマイマイ', image: './images/どくろマイマイ.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地'], disabled: false },
+    { name: 'ラッシュボウ', image: './images/ラッシュボウ.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地', '夏休みあかしコレクション'], disabled: false },
+    { name: 'どくろマイマイ', image: './images/どくろマイマイ.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地', '夏休みあかしコレクション'], disabled: false },
     { name: 'がんせきまじん', image: './images/がんせきまじん.png', quantity: 0, genre: ['★3', '3.ジュエル埋蔵地'], disabled: false },
     { name: 'アイスクラブ', image: './images/アイスクラブ.png', quantity: 0, genre: ['★4', '3.ジュエル埋蔵地', 'メインレア4コレクション(1)'], disabled: false },
     { name: 'フローズンミスト', image: './images/フローズンミスト.png', quantity: 0, genre: ['★4', '3.ジュエル埋蔵地', 'メインレア4コレクション(1)'], disabled: false },
@@ -34,7 +34,7 @@ const items = [
     { name: 'リーフホッグ', image: './images/リーフホッグ.png', quantity: 0, genre: ['★3', '4.風の塔と妖精'], disabled: false },
     { name: 'ダイころがし', image: './images/ダイころがし.png', quantity: 0, genre: ['★2', '4.風の塔と妖精'], disabled: false },
     { name: 'マジックエイプ', image: './images/マジックエイプ.png', quantity: 0, genre: ['★5', '4.風の塔と妖精', 'メインレア5コレクション'], disabled: false },
-    { name: 'ウィンドデビル', image: './images/ウィンドデビル.png', quantity: 0, genre: ['★3', '4.風の塔と妖精'], disabled: false },
+    { name: 'ウィンドデビル', image: './images/ウィンドデビル.png', quantity: 0, genre: ['★3', '4.風の塔と妖精', '夏休みあかしコレクション'], disabled: false },
     { name: 'ヘビーワーム', image: './images/ヘビーワーム.png', quantity: 0, genre: ['★5', '4.風の塔と妖精', 'メインレア5コレクション'], disabled: false },
     { name: 'しびれマタンゴ', image: './images/しびれマタンゴ.png', quantity: 0, genre: ['★4', '4.風の塔と妖精', 'メインレア4コレクション(1)'], disabled: false },
     { name: 'ウィンドビー', image: './images/ウィンドビー.png', quantity: 0, genre: ['★2', '4.風の塔と妖精'], disabled: false },
@@ -281,7 +281,7 @@ const items = [
     { name: 'ジュエルキング', image: './images/ジュエルキング.png', quantity: 0, genre: ['★3', 'ジュエルゲット!'], disabled: false },
 	
     { name: 'あなほりホッグ', image: './images/あなほりホッグ.png', quantity: 0, genre: ['★3', '9月.森の「きのこ」は誰のもの?'], disabled: false },
-    { name: 'あなほりホッグ', image: './images/あなほりホッグ.png', quantity: 0, genre: ['★3', '9月.森の「きのこ」は誰のもの?'], disabled: false },
+ //   { name: 'あなほりホッグ', image: './images/あなほりホッグ.png', quantity: 0, genre: ['★3', '9月.森の「きのこ」は誰のもの?'], disabled: false },
 	
 ];
 
