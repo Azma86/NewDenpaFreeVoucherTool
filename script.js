@@ -324,19 +324,18 @@ function addCover(itemDiv, item) {
 
 // 数量の更新
 function updateQuantity(item, value) {
-    const itemDiv = document.querySelector(`[data-id="${item.id}"]`);
-    const quantityInput = itemDiv.querySelector('input[type="number"]');
-    
-    // 数量の更新
-    item.quantity = parseInt(value);
-    quantityInput.value = item.quantity; // DOMの数量も更新
-    
-    // カバーの状態だけを更新
-    addCover(itemDiv, item);
-    
-    // ローカルストレージに保存
-    saveToLocalStorage();
-}
+    window.requestAnimationFrame(() => {
+		
+        item.quantity = parseInt(value);
+        const itemDiv = document.querySelector(`[data-id="${item.id}"]`);
+        itemDiv.querySelector('input[type="number"]').value = item.quantity;
+		
+		// カバーの状態だけを更新
+        addCover(itemDiv, item);
+		
+		// ローカルストレージに保存
+        saveToLocalStorage();
+    });
 
 
 // 画像に×印を表示・非表示
