@@ -38,11 +38,11 @@ const items = [
 { name: 'ヘビーワーム', image: './images/ヘビーワーム.png', quantity: 0, genre: ['★5', '4.風の塔と妖精', 'メインレア5コレクション'], disabled: false },
 { name: 'しびれマタンゴ', image: './images/しびれマタンゴ.png', quantity: 0, genre: ['★4', '4.風の塔と妖精', 'メインレア4コレクション(1)'], disabled: false },
 { name: 'ウィンドビー', image: './images/ウィンドビー.png', quantity: 0, genre: ['★2', '4.風の塔と妖精'], disabled: false },
-{ name: 'コドモドラコ', image: './images/コドモドラコ.png', quantity: 0, genre: ['★5', '4.風の塔と妖精'], 'メインレア5コレクション', disabled: false },
+{ name: 'コドモドラコ', image: './images/コドモドラコ.png', quantity: 0, genre: ['★5', '4.風の塔と妖精', 'メインレア5コレクション'], disabled: false },
 
 { name: 'はなもぐら', image: './images/はなもぐら.png', quantity: 0, genre: ['★1', '5.とうがらし農家'], disabled: false },
 { name: 'もろこしおばけ', image: './images/もろこしおばけ.png', quantity: 0, genre: ['★4', '5.とうがらし農家', 'メインレア4コレクション(1)'], disabled: false },
-{ name: 'タケノこぞう', image: './images/タケノこぞう.png', quantity: 0, genre: ['★5', '5.とうがらし農家'], 'メインレア5コレクション', disabled: false },
+{ name: 'タケノこぞう', image: './images/タケノこぞう.png', quantity: 0, genre: ['★5', '5.とうがらし農家', 'メインレア5コレクション'], disabled: false },
 { name: 'おばけとうがらし', image: './images/おばけとうがらし.png', quantity: 0, genre: ['★5', '5.とうがらし農家', 'メインレア5コレクション'], disabled: false },
 { name: 'ドライウッド', image: './images/ドライウッド.png', quantity: 0, genre: ['★4', '5.とうがらし農家'], disabled: false },
 { name: 'ロックシープ', image: './images/ロックシープ.png', quantity: 0, genre: ['★3', '5.とうがらし農家'], disabled: false },
