@@ -149,12 +149,6 @@ button {
     cursor: pointer;
 }
 
-#openInNewTabBtn:hover {
-    background-color: #45a049;
-}
-
-
-
 /* 使い方ボタン */
 .how-to-use-btn {
     position: fixed;
