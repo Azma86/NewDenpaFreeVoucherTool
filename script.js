@@ -435,20 +435,14 @@ function saveAsImage() {
 }
 
 // 新しいタブで開く
-function openInNewTab() {
-    const container = document.querySelector("#item-container");
-
-    // html2canvas を使って #item-container をキャプチャ
-    html2canvas(container, { useCORS: true, logging: true })
-        .then(canvas => {
-            const imageUrl = canvas.toDataURL('image/png');
-            const newTab = window.open();
-            newTab.document.body.innerHTML = `<img src="${imageUrl}" alt="Captured Image">`;
-        })
-        .catch(error => {
-            console.error('新しいタブでの画像表示に失敗しました: ', error);
-        });
-}
+document.getElementById('openInNewTabBtn').addEventListener('click', () => {
+    html2canvas(document.body).then((canvas) => {
+        const imgDataUrl = canvas.toDataURL('image/png');
+        const newTab = window.open();
+        newTab.document.write(`<img src="${imgDataUrl}" alt="Screenshot">`);
+        newTab.document.title = "Screenshot";
+    });
+});
 
 // ページ読み込み時にアイテムを表示し、ローカルストレージからデータをロード
 document.addEventListener('DOMContentLoaded', () => {
