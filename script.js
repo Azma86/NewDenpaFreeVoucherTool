@@ -326,7 +326,12 @@ function setupGenreButtons() {
 }
 
 // アイテムが描画される前に、画像保存ボタンのイベントを設定
-    document.getElementById('saveBtn').addEventListener('click', saveAsImage);
+document.getElementById('saveBtn').addEventListener('click', saveAsImage);
+document.getElementById('saveBtn').addEventListener('touchstart', saveAsImage);
+
+// "新規タブで開く" ボタン
+document.getElementById('openInNewTabBtn').addEventListener('click', openInNewTab);
+document.getElementById('openInNewTabBtn').addEventListener('touchstart', openInNewTab);
 
 // アイテムを表示する
 function renderItems(selectedGenres = []) {
@@ -435,15 +440,19 @@ function saveAsImage() {
 }
 
 // 新しいタブで開く
-document.getElementById('openInNewTabBtn').addEventListener('click', () => {
-    const container = document.getElementById('item-container');  // ここで対象を指定
+function openInNewTab() {
+    const container = document.getElementById('item-container');
     html2canvas(container).then((canvas) => {
         const imgDataUrl = canvas.toDataURL('image/png');
         const newTab = window.open();
-        newTab.document.write(`<img src="${imgDataUrl}" alt="Screenshot">`);
-        newTab.document.title = "Screenshot";
+        if (newTab) {
+            newTab.document.write(`<img src="${imgDataUrl}" alt="Screenshot">`);
+            newTab.document.title = "Screenshot";
+        } else {
+            alert('ポップアップがブロックされました。設定を確認してください。');
+        }
     });
-});
+}
 
 
 // ページ読み込み時にアイテムを表示し、ローカルストレージからデータをロード
