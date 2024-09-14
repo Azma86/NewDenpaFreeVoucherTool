@@ -333,6 +333,14 @@ document.getElementById('saveBtn').addEventListener('touchstart', saveAsImage);
 document.getElementById('openInNewTabBtn').addEventListener('click', openInNewTab);
 document.getElementById('openInNewTabBtn').addEventListener('touchstart', openInNewTab);
 
+function addClickListener(element, callback) {
+    // Clickイベントだけでなく、touchstartイベントもサポート
+    element.addEventListener('click', callback);
+    element.addEventListener('touchstart', callback);
+}
+element.addEventListener('touchstart', callback, { passive: true });
+
+
 // アイテムを表示する
 function renderItems(selectedGenres = []) {
     const container = document.getElementById('item-container');
@@ -458,6 +466,13 @@ function openInNewTab() {
 // ページ読み込み時にアイテムを表示し、ローカルストレージからデータをロード
 document.addEventListener('DOMContentLoaded', () => {
     const savedItems = loadFromLocalStorage();
+    const saveBtn = document.getElementById('saveBtn');
+    const openInNewTabBtn = document.getElementById('openInNewTabBtn');
+
+    // ボタンにイベントリスナーを追加
+    addClickListener(saveBtn, saveImage);
+    addClickListener(openInNewTabBtn, openInNewTab);
+});
 
     if (savedItems.length > 0) {
         savedItems.forEach((savedItem, index) => {
