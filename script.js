@@ -444,7 +444,7 @@ function toggleCover(item, itemDiv) {
 function saveAsImage() {
     const container = document.getElementById('item-container');
     html2canvas(container, {
-        width: 1540,  // 統一された幅
+        width: 1680,  // 統一された幅
         scale: 1      // スケールを指定して拡大しない
     }).then((canvas) => {
         const link = document.createElement('a');
@@ -458,7 +458,7 @@ function saveAsImage() {
 function openInNewTab() {
     const container = document.getElementById('item-container');
     html2canvas(container, {
-        width: 1540,  // 統一された幅
+        width: 1680,  // 統一された幅
         scale: 1      // スケールを指定して拡大しない
     }).then((canvas) => {
         const imgDataUrl = canvas.toDataURL('image/png');
