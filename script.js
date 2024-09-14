@@ -436,7 +436,7 @@ function saveAsImage() {
 
 // 新しいタブで開く
 document.getElementById('openInNewTabBtn').addEventListener('click', () => {
-    html2canvas(document.body).then((canvas) => {
+    html2canvas(container).then((canvas) => {
         const imgDataUrl = canvas.toDataURL('image/png');
         const newTab = window.open();
         newTab.document.write(`<img src="${imgDataUrl}" alt="Screenshot">`);
