@@ -325,6 +325,17 @@ function setupGenreButtons() {
     });
 }
 
+openInNewTabBtn.addEventListener('touchstart', (event) => {
+    event.preventDefault();
+    openImageInNewTab();
+});
+
+saveBtn.addEventListener('touchstart', (event) => {
+    event.preventDefault();
+    saveImageAsFile();
+});
+
+
 // アイテムが描画される前に、画像保存ボタンのイベントを設定
     document.getElementById('saveBtn').addEventListener('click', saveAsImage);
 
