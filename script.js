@@ -3,7 +3,7 @@ let selectedGenres = [];
 
 // アイテムデータ (追加・差し替えが容易)
 const items = [
-    { name: 'ジェリーマウス', image: './images/ジェリーマウス.png', quantity: 0, genre: ['★1', '1.凄いお宝がある洞窟'], disabled: false },
+{ name: 'ジェリーマウス', image: './images/ジェリーマウス.png', quantity: 0, genre: ['★1', '1.凄いお宝がある洞窟'], disabled: false },
 { name: 'きゅうけつキャット', image: './images/きゅうけつキャット.png', quantity: 0, genre: ['★2', '1.凄いお宝がある洞窟'], disabled: false },
 { name: 'だんごボーイ', image: './images/だんごボーイ.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟', '夏休みあかしコレクション'], disabled: false },
 { name: 'ボムパイン', image: './images/ボムパイン.png', quantity: 0, genre: ['★3', '1.凄いお宝がある洞窟', '夏休みあかしコレクション'], disabled: false },
@@ -424,25 +424,27 @@ function toggleCover(item, itemDiv) {
 
 // 画像として保存
 function saveAsImage() {
-    const container = document.querySelector("#item-container");
-
-    // html2canvas を使って #item-container をキャプチャ
-    html2canvas(container, { useCORS: true, logging: true })
-        .then(canvas => {
-            const link = document.createElement('a');
-            link.download = 'filtered_items.png'; // 絞り込み状態で保存
-            link.href = canvas.toDataURL('image/png');
-            link.click(); // 自動でリンクをクリックしてダウンロードを開始
-        })
-        .catch(error => {
-            console.error('画像の保存に失敗しました: ', error);
-        });
+    const container = document.getElementById('item-container');
+    html2canvas(container, {
+        width: 1024,  // 統一された幅
+        height: 768,  // 統一された高さ
+        scale: 1      // スケールを指定して拡大しない
+    }).then((canvas) => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'screenshot.png';
+        link.click();
+    });
 }
 
 // 新しいタブで開く
 function openInNewTab() {
     const container = document.getElementById('item-container');
-    html2canvas(container).then((canvas) => {
+    html2canvas(container, {
+        width: 1024,  // 統一された幅
+        height: 768,  // 統一された高さ
+        scale: 1      // スケールを指定して拡大しない
+    }).then((canvas) => {
         const imgDataUrl = canvas.toDataURL('image/png');
         const newTab = window.open();
         if (newTab) {
