@@ -232,7 +232,7 @@ const items = [
 { name: 'モフきんピカはなもぐら', image: './images/きんピカはなもぐら.png', quantity: 0, genre: ['★3', 'ブーストゲット!'], disabled: false },
 { name: 'モフはなもぐら', image: './images/モフはなもぐら.png', quantity: 0, genre: ['★3', 'ブーストゲット!'], disabled: false },
 { name: 'こうてつまじん', image: './images/こうてつまじん.png', quantity: 0, genre: ['★4', 'ブーストゲット!'], disabled: false },
-{ name: 'とげとげボーイ', image: './images/とげとげボーイ.png', quantity: 0, genre: ['★4', 'ブーストゲット!'], disabled: false },
+{ name: 'トゲトゲボーイ', image: './images/トゲトゲボーイ.png', quantity: 0, genre: ['★4', 'ブーストゲット!'], disabled: false },
 
 { name: 'ブルホーン', image: './images/ブルホーン.png', quantity: 0, genre: ['★3', 'ごちそうゲット!'], disabled: false },
 { name: 'ポイズンさそり', image: './images/ポイズンさそり.png', quantity: 0, genre: ['★3', 'ごちそうゲット!'], disabled: false },
