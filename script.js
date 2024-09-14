@@ -325,6 +325,24 @@ function setupGenreButtons() {
     });
 }
 
+// ページが読み込まれたらボタンにイベントリスナーを追加する
+function addEventListenersToButtons() {
+    const saveBtn = document.getElementById('saveBtn');
+    const openInNewTabBtn = document.getElementById('openInNewTabBtn');
+
+    // ボタンが存在するか確認してイベントを追加
+    if (saveBtn && openInNewTabBtn) {
+        saveBtn.addEventListener('click', saveAsImage);
+        saveBtn.addEventListener('touchstart', saveAsImage);  // スマホ対応のためtouchstartを追加
+
+        openInNewTabBtn.addEventListener('click', openInNewTab);
+        openInNewTabBtn.addEventListener('touchstart', openInNewTab);  // スマホ対応のためtouchstartを追加
+    }
+}
+
+// ページのDOMが完全に読み込まれたらイベントリスナーを設定
+document.addEventListener('DOMContentLoaded', addEventListenersToButtons);
+
 // アイテムが描画される前に、画像保存ボタンのイベントを設定
 document.getElementById('saveBtn').addEventListener('click', saveAsImage);
 document.getElementById('saveBtn').addEventListener('touchstart', saveAsImage);
