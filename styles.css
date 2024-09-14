@@ -138,6 +138,22 @@ button {
     font-size: 16px;
 }
 
+#openInNewTabBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#openInNewTabBtn:hover {
+    background-color: #45a049;
+}
+
+
 
 /* 使い方ボタン */
 .how-to-use-btn {
