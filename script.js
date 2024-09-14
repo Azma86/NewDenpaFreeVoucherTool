@@ -436,12 +436,13 @@ function saveAsImage() {
 
 // 新しいタブで開く
 document.getElementById('openInNewTabBtn').addEventListener('click', () => {
-    html2canvas(container).then((canvas) => {
-        const imgDataUrl = canvas.toDataURL('image/png');
-        const newTab = window.open();
-        newTab.document.write(`<img src="${imgDataUrl}" alt="Screenshot">`);
-        newTab.document.title = "Screenshot";
-    });
+    html2canvas(container, { useCORS: true, logging: true })
+	.then((canvas) => {
+            const imgDataUrl = canvas.toDataURL('image/png');
+            const newTab = window.open();
+            newTab.document.write(`<img src="${imgDataUrl}" alt="Screenshot">`);
+            newTab.document.title = "Screenshot";
+        });
 });
 
 // ページ読み込み時にアイテムを表示し、ローカルストレージからデータをロード
