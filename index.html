@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アイテム所持数チェッカー</title>
+    <title>New 電波人間のRPG FREE! あかしチェッカー</title>
     <link rel="stylesheet" href="styles.css">
     <!-- html2canvas ライブラリの読み込み -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
+	<h1>New 電波人間のRPG FREE! あかしチェッカー</h1>
     <div id="genre-buttons">
         <button data-genres="1.凄いお宝がある洞窟,2.温泉の町,3.ジュエル埋蔵地,4.風の塔と妖精,5.とうがらし農家,6.カジノの街,7.海賊と水の神殿,8.試練の塔,9.暗闇の洞窟">メイン</button>
         <button data-genres="達人の試練,勇者の試練,冒険者の試練,駆け出し者への火の試練,駆け出し者への氷の試練,駆け出し者への風の試練,駆け出し者への土の試練,駆け出し者への雷の試練,駆け出し者への水の試練,駆け出し者への光の試練,駆け出し者への闇の試練">エクストラ</button>
@@ -20,8 +21,8 @@
     <div id="item-container"></div>
 	<div id="filter-container"></div>
     <button id="saveBtn" type="button">画像として保存</button>
-
-    <!-- 使い方ボタン -->
+	
+	<!-- 使い方ボタン -->
 	<button id="howToUseBtn" class="how-to-use-btn">使い方</button>
 
 	<!-- 使い方説明モーダル -->
@@ -29,11 +30,23 @@
 	  <div class="modal-content">
 		<span id="closeModal" class="close">&times;</span>
 		<h2>使い方</h2>
-		<p>ここに使い方の説明が表示されます。</p>
-		<!-- 使い方の詳細な説明をここに追加 -->
+		<p>各あかしの所持数を入力します。各あかしの個数に応じて、</p>
+		<ul>青・・・求めているあかし</ul>
+		<ul>緑・・・出せるあかし</ul>
+		<ul>黒・・・持っているが出せないあかし</ul>
+		<p>のように変化します。</p>
+		<p>また、あかしの画像をタップ (またはクリック) することで、出せないあかしに変更することができます。</p>
+		<br></br>
+		<h2>このサイトについて</h2>
+		<p>「New 電波人間のRPG FREE! あかしチェッカー」は、ステージ攻略中や証交換の際に、あかしの所持数を確認するために作成されました。
+		<p>ジニアス・ソノリティ株式会社及びNew 電波人間のRPG FREE!運営とは一切関係のない<u><b>非公式のツールです</b></u>。</p>
+		<p>公式側から公開停止の依頼をされた場合、予告なしに公開を停止する可能性があることをご了承ください。</p>
+		<p>なお、作者はこのサイトを利用・閲覧することによって生じた損害に対し、一切の責任を負わないものとします。</p>
+		<p>データの修正依頼や画像提供を行っていただける場合、その他ご意見等ございましたら、下記のフォームからご連絡いだだきますようお願いいたします。</p>
+		<a href="https://docs.google.com/forms/d/e/1FAIpQLScpWwbmg-bbSAij32DxM7HGmPCdRTIZv3kGNoy5RiCxfeO0fQ/viewform?usp=sf_link" target="_blank">ご連絡フォームはこちら</a>
 	  </div>
 	</div>
-	
+
     <script src="script.js"></script>
 </body>
 </html>
