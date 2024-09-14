@@ -256,63 +256,56 @@ function setupGenreButtons() {
 function renderItems(selectedGenres = []) {
     const container = document.getElementById('item-container');
 
-    // 保持するアイテムのリスト
-    const currentItems = Array.from(container.querySelectorAll('.item'));
+    // コンテナ全体を一旦クリア（すべてのジャンルを再描画する場合）
+    container.innerHTML = ''; 
 
-    // 更新対象のジャンルでアイテムを処理
+    // 選択されたジャンルごとに処理
     selectedGenres.forEach(genre => {
-        let genreDiv = container.querySelector(`.genre[data-genre="${genre}"]`);
-        if (!genreDiv) {
-            genreDiv = document.createElement('div');
-            genreDiv.classList.add('genre');
-            genreDiv.setAttribute('data-genre', genre);
-            genreDiv.innerHTML = `<h2>${genre}</h2>`;
-            container.appendChild(genreDiv);
-        }
+        // ジャンルごとのdivを作成
+        let genreDiv = document.createElement('div');
+        genreDiv.classList.add('genre');
+        genreDiv.setAttribute('data-genre', genre);
+        genreDiv.innerHTML = `<h2>${genre}</h2>`;
+        container.appendChild(genreDiv);
 
-        // 選択されたジャンルに合致するアイテムを表示
-        items.filter(item => item.genre.includes(genre)).forEach(item => {
-            let itemDiv = genreDiv.querySelector(`.item[data-id="${item.id}"]`);
+        // ジャンルに合致するアイテムをすべて取得
+        const genreItems = items.filter(item => item.genre.includes(genre));
 
-            // 既存のアイテムがなければ新規作成
-            if (!itemDiv) {
-                itemDiv = document.createElement('div');
-                itemDiv.classList.add('item');
-                itemDiv.setAttribute('data-id', item.id);
+        // アイテムごとに処理
+        genreItems.forEach(item => {
+            // アイテム用のdivを作成
+            let itemDiv = document.createElement('div');
+            itemDiv.classList.add('item');
+            itemDiv.setAttribute('data-id', item.id);
 
-                const img = document.createElement('img');
-                img.src = item.image;
-                img.alt = item.name;
-                img.onerror = function() { this.src = './images/NoImage.png'; }; // エラー時に noimage.png を表示
-                img.loading = 'lazy';
-                img.onclick = () => toggleCover(item);
+            const img = document.createElement('img');
+            img.src = item.image;
+            img.alt = item.name;
+            img.onerror = function() { this.src = './images/NoImage.png'; }; // エラー時に noimage.png を表示
+            img.loading = 'lazy';
+            img.onclick = () => toggleCover(item);
 
-                const quantityInput = document.createElement('input');
-                quantityInput.type = "number";
-                quantityInput.value = item.quantity;
-                quantityInput.min = 0;
-                quantityInput.onchange = function() { updateQuantity(item, this.value); };
+            const quantityInput = document.createElement('input');
+            quantityInput.type = "number";
+            quantityInput.value = item.quantity;
+            quantityInput.min = 0;
+            quantityInput.onchange = function() { updateQuantity(item, this.value); };
 
-                const namePara = document.createElement('p');
-                namePara.textContent = item.name;
+            const namePara = document.createElement('p');
+            namePara.textContent = item.name;
 
-                itemDiv.appendChild(img);
-                itemDiv.appendChild(namePara);
-                itemDiv.appendChild(quantityInput);
-                genreDiv.appendChild(itemDiv);
-            }
+            itemDiv.appendChild(img);
+            itemDiv.appendChild(namePara);
+            itemDiv.appendChild(quantityInput);
+            genreDiv.appendChild(itemDiv);
 
-            // カバーの追加処理（既存のDOM要素に対してのみ）
+            // カバーの追加処理
             addCover(itemDiv, item);
-
-            // アイテムの情報が変更されている場合のみ更新
-            const quantityInput = itemDiv.querySelector('input[type="number"]');
-            if (quantityInput.value != item.quantity) {
-                quantityInput.value = item.quantity;
-            }
         });
     });
 }
+
+
 
 // カバーの追加処理
 function addCover(itemDiv, item) {
