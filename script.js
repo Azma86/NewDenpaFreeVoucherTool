@@ -417,34 +417,35 @@ function toggleCover(item, itemDiv) {
     addCover(itemDiv, item);
 }
 
-// 画像として保存
-function saveAsImage() {
-    const container = document.querySelector("#item-container");
+// 「新規タブで開く」ボタンのイベント処理
+const openInNewTabBtn = document.getElementById('openInNewTabBtn');
+openInNewTabBtn.addEventListener('click', openImageInNewTab);
+openInNewTabBtn.addEventListener('touchstart', openImageInNewTab);  // touchイベントを追加
 
-    // html2canvas を使って #item-container をキャプチャ
-    html2canvas(container, { useCORS: true, logging: true })
-        .then(canvas => {
-            const link = document.createElement('a');
-            link.download = 'filtered_items.png'; // 絞り込み状態で保存
-            link.href = canvas.toDataURL('image/png');
-            link.click(); // 自動でリンクをクリックしてダウンロードを開始
-        })
-        .catch(error => {
-            console.error('画像の保存に失敗しました: ', error);
-        });
-}
-
-// 新しいタブで開く
-document.getElementById('openInNewTabBtn').addEventListener('click', () => {
-    const container = document.getElementById('item-container');  // ここで対象を指定
+function openImageInNewTab() {
+    const container = document.getElementById('item-container');
     html2canvas(container).then((canvas) => {
         const imgDataUrl = canvas.toDataURL('image/png');
         const newTab = window.open();
         newTab.document.write(`<img src="${imgDataUrl}" alt="Screenshot">`);
         newTab.document.title = "Screenshot";
     });
-});
+}
 
+// 「画像として保存」ボタンのイベント処理
+const saveBtn = document.getElementById('saveBtn');
+saveBtn.addEventListener('click', saveImageAsFile);
+saveBtn.addEventListener('touchstart', saveImageAsFile);  // touchイベントを追加
+
+function saveImageAsFile() {
+    const container = document.getElementById('item-container');
+    html2canvas(container).then((canvas) => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'screenshot.png';
+        link.click();
+    });
+}
 
 // ページ読み込み時にアイテムを表示し、ローカルストレージからデータをロード
 document.addEventListener('DOMContentLoaded', () => {
