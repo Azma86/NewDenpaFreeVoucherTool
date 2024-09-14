@@ -460,3 +460,25 @@ document.addEventListener('DOMContentLoaded', () => {
         firstButton.click(); // 最初のボタンをクリックして自動選択
     }
 });
+
+// 使い方ボタンとモーダルの要素を取得
+const howToUseBtn = document.getElementById('howToUseBtn');
+const modal = document.getElementById('howToUseModal');
+const closeModal = document.getElementById('closeModal');
+
+// ボタンが押されたらモーダルを表示
+howToUseBtn.addEventListener('click', () => {
+    modal.style.display = 'block';
+});
+
+// 閉じるボタンが押されたらモーダルを非表示
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// モーダル外をクリックした場合も閉じる
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
