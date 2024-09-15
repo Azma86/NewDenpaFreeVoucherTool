@@ -441,7 +441,7 @@ function toggleCover(item, itemDiv) {
 }
 
 // 画像として保存
-function saveImage(event) {
+function saveAsImage(event) {
     event.preventDefault();  // デフォルトのタッチ動作を抑制
 
     // 1920pxの幅に合わせるため、まずアイテムコンテナのスタイルを確認
