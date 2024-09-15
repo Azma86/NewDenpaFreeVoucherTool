@@ -441,11 +441,16 @@ function toggleCover(item, itemDiv) {
 }
 
 // 画像として保存
-function saveAsImage() {
+function saveImage(event) {
+    event.preventDefault();  // デフォルトのタッチ動作を抑制
+
+    // 1920pxの幅に合わせるため、まずアイテムコンテナのスタイルを確認
     const container = document.getElementById('item-container');
+    container.style.width = '1920px';  // 横幅を1920pxに固定
+
     html2canvas(container, {
-        width: 1920,  // 統一された幅
-        scale: 1      // スケールを指定して拡大しない
+        width: 1920,  // 出力するキャンバスの幅を1920pxに
+        scale: 1      // 画像を拡大せずにそのままキャプチャ
     }).then((canvas) => {
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/png');
@@ -454,9 +459,12 @@ function saveAsImage() {
     });
 }
 
+
 // 新しいタブで開く
 function openInNewTab() {
     const container = document.getElementById('item-container');
+    container.style.width = '1920px';  // 横幅を1920pxに固定
+	
     html2canvas(container, {
         width: 1920,  // 統一された幅
         scale: 1      // スケールを指定して拡大しない
